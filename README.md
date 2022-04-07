@@ -1,4 +1,4 @@
-# SoftwareEngineering
+# SoftwareEngineering_team2
 
 # 조원 소개
 # 직책/학번/이름/학과
