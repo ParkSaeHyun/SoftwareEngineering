@@ -1,0 +1,16 @@
+.baseButton{
+    border: none;
+    border-radius: 0.4rem;
+    padding: 0.5rem 1.5rem;
+    margin-left: 1rem;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    color: white;
+    background-color: skyblue;
+}
+
+.baseButton:hover{
+    background-color: aquamarine;
+    
+}
