@@ -1,0 +1,14 @@
+.header{
+    margin: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header__searchInput{
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    line-height: 1.9rem;
+    width: auto;
+    margin-right: -0.6rem;
+}
