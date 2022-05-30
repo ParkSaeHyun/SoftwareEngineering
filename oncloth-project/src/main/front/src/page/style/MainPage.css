@@ -1,0 +1,19 @@
+.unloginIntro{
+    margin: 1rem 15rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    line-height: 1.6rem;
+}
+
+.unloginIntro article{
+    width: 100%;
+    margin-bottom: 3rem;
+    font-size: 1.1rem;
+}
+
+.articleHead {
+    font-size: 2rem;
+    font-weight: 800;
+}
