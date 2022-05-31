@@ -1,13 +1,26 @@
+import { Link } from "react-router-dom";
 import Header from "../../base/Header";
+import CustomCategoryList from "../cloth/CustomCategoryList";
 import style from "../style/MainPage.css"
 
 const MainPage = ({mode}) => {
-    
+    const categoty = [];
+    for(let i = 0; i < 6; i++){
+        categoty.push(`사용자지정 ${i}`);
+    }
+    console.log(categoty);
     return(
         <div>
             {mode ? //로그인 상태
                 <div>
                     <Header mode={mode} />
+                    <div className="mainWeather">
+                        <Link to="/spring"><button>봄</button></Link>
+                        <Link to="/summer"><button>여름</button></Link>
+                        <Link to="/autumn"><button>가을</button></Link>
+                        <Link to="/winter"><button>겨울</button></Link>
+                    </div>
+                    <CustomCategoryList />
                 </div>
                 : //로그아웃 상태
                 <div>

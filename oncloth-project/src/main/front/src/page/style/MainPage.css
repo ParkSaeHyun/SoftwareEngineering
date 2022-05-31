@@ -17,3 +17,48 @@
     font-size: 2rem;
     font-weight: 800;
 }
+
+.mainWeather{
+    display: flex;
+    justify-content: space-around;
+    background-color: rgb(195, 231, 255);
+    margin: 1rem 5rem;
+}
+
+.mainWeather button{
+    height: 250px;
+    width: 250px;
+    background-color: white;
+    border: none;
+    border-radius: 50%;
+    margin: 1rem;
+    font-size: 2.5rem;
+    font-weight: 600;
+}
+
+.MyStyleList{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    height: 350px;
+    background-color: rgb(188, 228, 255);
+    overflow: scroll;
+    margin: 1rem 5rem;
+}
+
+.MyStyleList button{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2rem;
+    padding: 1rem;
+    border-radius: 3rem;
+    border: none;
+    font-size: 1.25rem;
+}
+
+.altImg{
+    width: 200px;
+    height: 200px;
+    border: 1px solid black;
+    background-color: beige;
+}

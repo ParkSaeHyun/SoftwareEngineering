@@ -17,7 +17,7 @@ const Header = ({mode}) => {
                     </form>
                     <div>
                         <span>반갑습니다 {name}님!</span>
-                        <Button>로그아웃</Button>
+                        <Link to="/login" ><Button>로그아웃</Button></Link>
                     </div>
                     <div>
                         <Button>옷 추가하기</Button>
