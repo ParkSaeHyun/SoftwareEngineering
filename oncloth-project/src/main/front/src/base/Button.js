@@ -1,8 +1,8 @@
-import style from "./style/Button.css"
+import style from "./style/Button.css";
 
-const Button = ({children, type}) => {
+const Button = ({children, type, onClick, value}) => {
     return(
-        <button className="baseButton" type={type}>{children}</button>
+        <button onClick={onClick} value={value} className="baseButton" type={type}>{children}</button>
     );
 
 }
