@@ -14,6 +14,6 @@ public class UserService {
     private UserRepository userRepository;
 
     public void createUser(UserDto userDto){
-//        userRepository.save(userDto)
+        userRepository.save(new User(userDto));
     } //save는 jpa 메소드
 }

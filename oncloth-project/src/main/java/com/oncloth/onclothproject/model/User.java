@@ -1,15 +1,16 @@
 package com.oncloth.onclothproject.model;
 
+import com.oncloth.onclothproject.dto.UserDto;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Data
+@NoArgsConstructor
+@Table(name = "user")
 public class User {
 
 //    @Id
@@ -20,5 +21,12 @@ public class User {
     private String userid;
     private String userpassword;
     private String usernickname;
+
+    @Builder
+    public User(UserDto userDto){
+        this.userid=userDto.getUserid();
+        this.userpassword=userDto.getUserpassword();
+        this.usernickname=userDto.getUsernickname();
+    }
 
 }

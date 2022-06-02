@@ -1,14 +1,12 @@
 package com.oncloth.onclothproject.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Builder;
 
 public class UserDto {
 
-    @JsonProperty("usernickname")
     private String usernickname;
-    @JsonProperty("userpassword")
     private String userpassword;
-    @JsonProperty("userid")
     private String userid;
 
     public String getUsernickname() {
@@ -34,4 +32,11 @@ public class UserDto {
     public void setUserid(String userid) {
         this.userid = userid;
     }
+    @Builder
+    public UserDto(String userid, String userpassword, String usernickname){
+        this.userid=userid;
+        this.userpassword=userpassword;
+        this.usernickname=usernickname;
+    }
+
 }

@@ -6,14 +6,14 @@ import axios from "axios";
 
 const RegisterPage = () => {
     const data = {
-        "userid": "asdsad",
-        "userpassword": "zxc",
-        "usernickname": "asd"
+        userid: "asdsad",
+        userpassword: "zxc",
+        usernickname: "asd"
     };
 
     const onSubmit = (e) => {
         e.preventDefault();
-        axios.post("/api/register/", JSON.stringify(data));
+        axios.post("/register/", null,JSON.stringify(data));
     }
     return(
         <>
@@ -24,7 +24,7 @@ const RegisterPage = () => {
                 <form className="loginForm" onSubmit={onSubmit} action="">
                     <input required type="text" id="id" placeholder="아이디"/>
                     <input required type="text" id="nickname" placeholder="닉네임"/>
-                    <input required type="password" id="password" placeholder="비밀번호"/>
+                    <input required type="text" id="password" placeholder="비밀번호"/>
                     <Button type="submit">회원가입</Button>
                 </form>
             </div>
