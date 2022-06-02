@@ -7,7 +7,7 @@ import CategoryList from "./page/cloth/CategoryList";
 import ClothList from "./page/cloth/ClothList";
 
 function App() {
-  const mode = true;
+  const mode = false;
   return (
     <>
     <Routes>
