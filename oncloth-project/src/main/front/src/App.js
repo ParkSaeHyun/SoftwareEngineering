@@ -7,6 +7,7 @@ import CategoryList from "./page/cloth/CategoryList";
 import ClothList from "./page/cloth/ClothList";
 import EditCloth from "./page/cloth/EditCloth";
 import EditUserPage from "./page/user/EditUser";
+import TrashBin from './page/cloth/TrashBin'
 
 function App() {
   const mode = true;
@@ -21,6 +22,7 @@ function App() {
       <Route path="/editcloth" element= {<EditCloth />} /> 
       <Route path="/clothlist" element = {<ClothList name = "안녕" />}/>
       <Route path="/editUser" element = {<EditUserPage />}/>
+      <Route path="/trashbin" element = {<TrashBin /> } />
     </Routes>
     </>
   );
