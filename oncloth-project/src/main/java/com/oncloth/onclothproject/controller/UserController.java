@@ -15,10 +15,10 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/api/register")
-    public String createUser(@RequestBody UserDto userDto) {
+    public User createUser( @RequestBody UserDto userDto) {
 
-        userService.createUser(userDto);
+        User savedUser = userService.createUser(userDto);
 
-        return "";
+        return savedUser;
     }
 }

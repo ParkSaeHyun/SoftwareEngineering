@@ -13,7 +13,8 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public void createUser(UserDto userDto){
-        userRepository.save(new User(userDto));
-    } //save는 jpa 메소드
+    public User createUser(UserDto userDto){
+        User savedUser = userRepository.save(new User(userDto));
+        return savedUser;
+    }
 }

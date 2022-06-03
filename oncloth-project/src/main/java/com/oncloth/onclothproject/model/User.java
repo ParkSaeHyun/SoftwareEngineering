@@ -1,21 +1,14 @@
 package com.oncloth.onclothproject.model;
 
 import com.oncloth.onclothproject.dto.UserDto;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
-@Data
 @NoArgsConstructor
-@Table(name = "user")
+@Getter
 public class User {
-
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    private Integer id;
 
     @Id
     private String userid;

@@ -6,6 +6,23 @@ import axios from "axios";
 import { useNavigate } from "react-router";
 
 const RegisterPage = () => {
+
+    // const url = "/api/register";
+    // const sendParam = {
+    //     userid: "asdsad",
+    //     userpassword: "zxc",
+    //     usernickname: "asd"
+    // }
+    //
+    // axios.post(url, sendParam)
+    //     .then((res) => {
+    //         console.log(res)
+    //     })
+    //     .catch((error) => {
+    //         console.log(error.response)
+    //     })
+
+
     const navigate = useNavigate();
     const data = {
         userid: "asdsad",
@@ -15,9 +32,12 @@ const RegisterPage = () => {
 
     const onSubmit = (e) => {
         e.preventDefault();
-        // axios.post("/register/", null,JSON.stringify(data));
+        axios.post("/api/register/", JSON.stringify(data),{headers:{
+                "Content-Type":"application/json"
+            }});
         navigate('/');
     };
+
 
     return(
         <>
@@ -28,7 +48,7 @@ const RegisterPage = () => {
                 <form className="loginForm" onSubmit={onSubmit} action="">
                     <input required type="text" id="id" placeholder="아이디"/>
                     <input required type="text" id="nickname" placeholder="닉네임"/>
-                    <input required type="text" id="password" placeholder="비밀번호"/>
+                    <input required type="password" id="password" placeholder="비밀번호"/>
                     <Button type="submit">회원가입</Button>
                 </form>
             </div>

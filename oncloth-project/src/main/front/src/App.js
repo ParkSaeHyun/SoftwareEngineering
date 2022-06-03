@@ -10,7 +10,7 @@ import EditUserPage from "./page/user/EditUser";
 import TrashBin from './page/cloth/TrashBin'
 
 function App() {
-  const mode = true;
+  const mode = false;
   return (
     <>
     <Routes>

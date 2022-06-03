@@ -1,37 +1,20 @@
 package com.oncloth.onclothproject.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.oncloth.onclothproject.model.User;
 import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@Setter
+@NoArgsConstructor
 public class UserDto {
 
+    private String userid;
     private String usernickname;
     private String userpassword;
-    private String userid;
 
-    public String getUsernickname() {
-        return usernickname;
-    }
-
-    public void setUsernickname(String usernickname) {
-        this.usernickname = usernickname;
-    }
-
-    public String getUserpassword() {
-        return userpassword;
-    }
-
-    public void setUserpassword(String userpassword) {
-        this.userpassword = userpassword;
-    }
-
-    public String getUserid() {
-        return userid;
-    }
-
-    public void setUserid(String userid) {
-        this.userid = userid;
-    }
     @Builder
     public UserDto(String userid, String userpassword, String usernickname){
         this.userid=userid;
