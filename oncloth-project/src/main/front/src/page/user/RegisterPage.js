@@ -3,8 +3,10 @@ import style from "../style/LoginPage.css";
 import img from "../../base/소공로고.jpg";
 import Logo from "../../base/Logo";
 import axios from "axios";
+import { useNavigate } from "react-router";
 
 const RegisterPage = () => {
+    const navigate = useNavigate();
     const data = {
         userid: "asdsad",
         userpassword: "zxc",
@@ -13,8 +15,10 @@ const RegisterPage = () => {
 
     const onSubmit = (e) => {
         e.preventDefault();
-        axios.post("/register/", null,JSON.stringify(data));
-    }
+        // axios.post("/register/", null,JSON.stringify(data));
+        navigate('/');
+    };
+
     return(
         <>
             <div className="loginBlock">

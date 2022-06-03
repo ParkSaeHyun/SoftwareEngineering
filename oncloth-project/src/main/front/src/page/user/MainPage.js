@@ -8,7 +8,6 @@ const MainPage = ({mode}) => {
     for(let i = 0; i < 6; i++){
         categoty.push(`사용자지정 ${i}`);
     }
-    console.log(categoty);
     return(
         <div>
             {mode ? //로그인 상태
