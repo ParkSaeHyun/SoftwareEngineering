@@ -20,7 +20,7 @@ const Header = ({mode}) => {
                         <Link to="/login" ><Button>로그아웃</Button></Link>
                     </div>
                     <div>
-                        <Button>옷 추가하기</Button>
+                        <Link to="/editcloth"><Button>옷 추가하기</Button></Link>
                         <Button>회원정보 수정</Button>
                     </div>
                 </div> 
