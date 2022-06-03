@@ -21,7 +21,7 @@ const Header = ({mode}) => {
                     </div>
                     <div>
                         <Link to="/editcloth"><Button>옷 추가하기</Button></Link>
-                        <Button>회원정보 수정</Button>
+                        <Link to="/edituser"><Button>회원정보 수정</Button></Link>
                     </div>
                 </div> 
              : //여기부터 로그아웃 상태
