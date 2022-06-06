@@ -25,9 +25,9 @@ const RegisterPage = () => {
 
     const navigate = useNavigate();
     const data = {
-        userid: "asdsad",
-        userpassword: "zxc",
-        usernickname: "asd"
+        userid: "user1",
+        userpassword: "1234",
+        usernickname: "user1"
     };
 
     const onSubmit = (e) => {
