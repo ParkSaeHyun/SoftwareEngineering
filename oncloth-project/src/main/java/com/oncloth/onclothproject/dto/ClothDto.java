@@ -14,18 +14,20 @@ public class ClothDto {
     private String seasoncategory;
     private String partcategory;
     private String customcategory;
-    private String image;
+    private String imagename;
+    private String imagepath;
     private String location;
     private String description;
     private boolean trashbin;
 
     @Builder
-    public ClothDto(Long id, String seasonCategory, String partCategory, String customCategory, String image, String location, String description, boolean trashBin){
+    public ClothDto(Long id, String seasoncategory, String partcategory, String customcategory, String imagename, String imagepath, String location, String description, boolean trashbin){
         this.id = id;
         this.seasoncategory = seasoncategory;
         this.partcategory = partcategory;
         this.customcategory = customcategory;
-        this.image = image;
+        this.imagename = imagename;
+        this.imagepath = imagepath;
         this.location = location;
         this.description = description;
         this.trashbin = trashbin;
