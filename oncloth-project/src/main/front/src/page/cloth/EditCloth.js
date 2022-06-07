@@ -26,10 +26,11 @@ const EditCloth = ({edit, cloth}) => {
         const fd = new FormData();
         Object.values(imgFile).forEach((file) => fd.append("file", file));
 
-        await axios.post('http://localhost:8110/test/WriteBoard.do', fd, {
+        await axios.post('api/cloth/create', fd, {
             headers: {
             "Content-Type": `multipart/form-data; `,
-  }
+        }
+
 })
     }
     return(
