@@ -8,22 +8,6 @@ import { useState } from "react";
 
 const RegisterPage = () => {
 
-    // const url = "/api/register";
-    // const sendParam = {
-    //     userid: "asdsad",
-    //     userpassword: "zxc",
-    //     usernickname: "asd"
-    // }
-    //
-    // axios.post(url, sendParam)
-    //     .then((res) => {
-    //         console.log(res)
-    //     })
-    //     .catch((error) => {
-    //         console.log(error.response)
-    //     })
-
-
     const navigate = useNavigate();
     const [inputId, setInputid] = useState("");
     const [inputPw, setInputPw] = useState("");

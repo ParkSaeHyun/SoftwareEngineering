@@ -45,10 +45,8 @@ const CustomCategoryList = () => {
                     {/* <Typography id="modal-modal-title" variant="h6" component="h2">
                         새로운 창입니다.
                     </Typography> */}
-                    <input type="text" placeholder="카테고리 이름을 입력"/>
-                    <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                        Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-                    </Typography>
+                    <input type="text" placeholder="카테고리 이름을 입력해주세요"/>
+                    <Button>저장</Button>
                 </Box>
             </Modal>
         </div>
