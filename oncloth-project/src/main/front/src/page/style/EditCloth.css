@@ -1,0 +1,81 @@
+.addCloth{
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    top: 0;
+    background-color: rgb(188, 228, 255);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.addClothHeader{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.addClothHeader h1{
+    font-size: 2rem;    
+}
+
+.addClothHeader img{
+    height: 4rem;
+}
+
+.addClothBox{
+    padding: 2rem;
+    border-radius: 1rem;
+    background-color: white;
+}
+
+.addClothForm{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+}
+
+.addClothFormInput{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin-bottom: 2rem;
+}
+
+.addClothFormLeft{
+    display: flex;
+    flex-direction: column;
+    margin-right: 2rem;
+}
+
+.addClothFormLeft div{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.addClothFormRight{
+    display: flex;
+    flex-direction: column;
+}
+
+.addClothFormRight input{
+    font-size: 1.3rem;
+    line-height: 2rem;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    margin-bottom: 0.4rem;
+}
+
+.addClothFormRight textarea{
+}
+
+.addClothFormButton{
+    display: flex;
+    justify-content: center;
+}
+
+.addClothSelect{
+    margin-top: 1.125rem;
+    height: 3rem;
+}

@@ -2,15 +2,51 @@ import Button from "../../base/Button";
 import style from "../style/LoginPage.css";
 import { Link } from "react-router-dom";
 import Logo from "../../base/Logo";
+
+//로그인 테스트 변경사항
+import axios from "axios";
+import { useNavigate } from "react-router";
+import { useState } from "react";
+
 const LoginPage = () => {
+    const navigate = useNavigate();
+
+    const [inputId, setInputId] = useState("");
+    const [inputPw, setInputPw] = useState("");
+
+    const onChangeId = (e) => {
+        setInputId(e.target.value);
+    }
+    const onChangePw = (e) => {
+        setInputPw(e.target.value);
+    }
+
+    //로그인 테스트
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+        const data = {
+            userid: inputId,
+            userpassword: inputPw
+        };
+
+        const result = axios.post("/api/login/", data,{headers:{
+                "Content-Type":"application/json"
+            }});
+        console.log(result);
+        localStorage.setItem('user', JSON.stringify(result));
+        alert("환영합니다 :)");
+    };
+
+
     return(
         <div className="loginBlock">
             <div className="whiteBox">
                 <Logo />
                 <h2>로그인</h2>
-                <form className="loginForm" action="">
-                    <input required type="text" id="" placeholder="아이디"/>
-                    <input required type="password" placeholder="비밀번호"/>
+                <form className="loginForm" onSubmit={onSubmit} action="">
+                    <input required value={inputId} onChange={onChangeId} type="text" id="" placeholder="아이디"/>
+                    <input required value={inputPw} onChange={onChangePw} type="password" placeholder="비밀번호"/>
                     <Button type="submit">로그인하기</Button>
                     <Link to="/findmypw" style={{"textAlign": "right", "fontSize": "0.725rem"}}>비밀번호 찾기</Link>
                 </form>
