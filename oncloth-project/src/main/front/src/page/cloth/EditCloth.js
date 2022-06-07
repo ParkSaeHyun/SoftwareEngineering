@@ -4,12 +4,15 @@ import {useState} from "react";
 import {Link} from "react-router-dom"
 import style from "../style/EditCloth.css";
 import TextField from '@mui/material/TextField';
+import axios from "axios";
 
 const EditCloth = ({edit, cloth}) => {
     const customCategory = ["1", "2", "3", "4"];
-    const [inputImg, setInputImg] = useState('');
-    const encodeFileToBase64 = (fileBlob) => {
+    const [inputImg, setInputImg] = useState(''); //미리보기
+    const [imgFile, setImgFile] = useState(null); //이미지
+    const encodeFileToBase64 = (e, fileBlob) => {
         const reader = new FileReader();
+        setImgFile(e.target.files)
         reader.readAsDataURL(fileBlob);
         return new Promise((resolve) =>{
             reader.onload= () => {
@@ -19,6 +22,17 @@ const EditCloth = ({edit, cloth}) => {
         })
     }
 
+    const onSubmitCloth = async() => {
+        const fd = new FormData();
+        Object.values(imgFile).forEach((file) => fd.append("file", file));
+
+        await axios.post('api/cloth/create', fd, {
+            headers: {
+            "Content-Type": `multipart/form-data; `,
+        }
+
+})
+    }
     return(
         <div className="addCloth">
             <main className="addClothBox">
@@ -29,7 +43,7 @@ const EditCloth = ({edit, cloth}) => {
                     <h1>옷 편집하기</h1> 
                     }
                 </header>
-                <form className="addClothForm">
+                <form onSubmit={onSubmitCloth} className="addClothForm">
                     <div className="addClothFormInput">
                         <div className="addClothFormLeft">
                             <div style={{"display": "flex"}} className="imgPreview">
@@ -44,7 +58,7 @@ const EditCloth = ({edit, cloth}) => {
                                                 "fontWeight": 600,
                                                 "width": "100%"}}>이미지 미리보기</div>}
                             </div>
-                            <input type="file" placeholder="" onChange={(e) => encodeFileToBase64(e.target.files[0])}/>
+                            <input type="file" id="file" multiple="multiple" placeholder="" onChange={(e) => encodeFileToBase64(e, e.target.files[0])}/>
                             <div>
                                 <select className="addClothSelect" name="" id="">
                                     <option value="봄">봄</option>
