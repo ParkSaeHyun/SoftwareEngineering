@@ -19,13 +19,14 @@ const EditCloth = ({edit, cloth}) => {
                 setInputImg(reader.result);
                 resolve();
             }
-        })
+        });
     }
 
-    const onSubmitCloth = async() => {
+    const onSubmitCloth = async(e) => {
+        e.preventDefault();
         const fd = new FormData();
         Object.values(imgFile).forEach((file) => fd.append("file", file));
-
+        console.log(fd)
         await axios.post('api/cloth/create', fd, {
             headers: {
             "Content-Type": `multipart/form-data; `,

@@ -8,13 +8,28 @@ import ClothList from "./page/cloth/ClothList";
 import EditCloth from "./page/cloth/EditCloth";
 import EditUserPage from "./page/user/EditUser";
 import TrashBin from './page/cloth/TrashBin'
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { login } from "./redux/login";
+
+
 
 function App() {
   const mode = true;
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if(user)
+    {
+      dispatch(login(user))
+    }
+  },
+  [])
   return (
     <>
     <Routes>
-      <Route path="/" element={<MainPage mode={mode}/>} />
+      <Route path="/" element={<MainPage />} />
       <Route path="/login" element={<LoginPage />}/>
       <Route path="/register" element = {<RegisterPage/>}/>
       <Route path="/findmypw" element = {<FindMyPwPage/>}/>

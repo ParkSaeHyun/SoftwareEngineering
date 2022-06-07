@@ -3,12 +3,14 @@ import logo from "./소공로고.jpg";
 import style from "./style/Header.css"
 import { Link } from "react-router-dom";
 import Logo from "./Logo";
+import { useSelector } from "react-redux";
 
 const Header = ({mode}) => {
+    const user = useSelector(state => state.userState.user)
     const name = "재석이짱";
     return(
         <div>          
-            {mode ? //mode가 true이면(로그인 상태이면) 검색창과 회원정보 출력, false이면(로그아웃 상태이면) 로그인 회원가입 버튼 출력
+            {user ? 
                 <div className="header">
                     <Logo />
                     <form className="header__Search">
@@ -24,7 +26,7 @@ const Header = ({mode}) => {
                         <Link to="/edituser"><Button>회원정보 수정</Button></Link>
                     </div>
                 </div> 
-             : //여기부터 로그아웃 상태
+             : 
                 <div className="header">
                     <Logo />
                     <div>
