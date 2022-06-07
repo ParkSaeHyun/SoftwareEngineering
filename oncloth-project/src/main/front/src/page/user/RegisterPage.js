@@ -7,22 +7,6 @@ import { useNavigate } from "react-router";
 
 const RegisterPage = () => {
 
-    // const url = "/api/register";
-    // const sendParam = {
-    //     userid: "asdsad",
-    //     userpassword: "zxc",
-    //     usernickname: "asd"
-    // }
-    //
-    // axios.post(url, sendParam)
-    //     .then((res) => {
-    //         console.log(res)
-    //     })
-    //     .catch((error) => {
-    //         console.log(error.response)
-    //     })
-
-
     const navigate = useNavigate();
     const data = {
         userid: "user1",

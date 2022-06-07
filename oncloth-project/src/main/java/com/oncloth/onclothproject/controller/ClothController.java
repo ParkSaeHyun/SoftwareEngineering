@@ -1,25 +1,29 @@
-//package com.oncloth.onclothproject.controller;
-//
-//
-//import com.oncloth.onclothproject.model.Cloth;
-//import com.oncloth.onclothproject.service.ClothService;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.stereotype.Controller;
-//import org.springframework.web.bind.annotation.RequestBody;
-//
-//import java.util.List;
-//
-////@Controller
-//public class ClothController {
-//    private final ClothService clothService;
-//    //@Autowired
-//    public ClothController(ClothService clothService){
-//        this.clothService = clothService;
-//    }
-//
-//    public Long create(@RequestBody Cloth cloth){
-//        return clothService.add(cloth);
-//    }
+package com.oncloth.onclothproject.controller;
+
+
+import com.oncloth.onclothproject.dto.ClothDto;
+import com.oncloth.onclothproject.model.Cloth;
+import com.oncloth.onclothproject.service.ClothService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import java.util.List;
+
+@Controller
+public class ClothController {
+
+    @Autowired
+    private ClothService clothService;
+
+
+    //class diagram *must modify
+    @PostMapping("api/cloth/create")
+    public Cloth create(@RequestBody ClothDto clothDto){
+        return clothService.create(clothDto);
+    }
+
 //
 //    //옷 상세조회
 //    public Cloth read(@RequestBody Long id){
@@ -52,4 +56,4 @@
 //    public List<Cloth> customCategoryRead(@RequestBody String customCategoryName){
 //        return clothService.customCategoryRead(customCategoryName);
 //    }
-//}
+}
