@@ -33,8 +33,10 @@ const LoginPage = () => {
 
         axios.post("/api/login/", data,{headers:{
                 "Content-Type":"application/json"
-            }}).then(response => console.log(response));
-        alert("환영합니다 :)");
+            }}).then(response => {
+                localStorage.setItem('user', JSON.stringify(response.data));
+            }).catch(e => alert(`${e}의 오류가 발생했습니다.`));
+            alert(`환영합니다!`)
         navigate("/")
     };
 

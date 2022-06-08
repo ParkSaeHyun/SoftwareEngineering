@@ -3,6 +3,7 @@ import Button from "../../base/Button";
 import logo from "../../base/소공로고.jpg";
 import {useState} from "react";
 import {Link} from "react-router-dom"
+import { useNavigate } from "react-router";
 import style from "../style/EditCloth.css";
 import TextField from '@mui/material/TextField';
 import axios from "axios";
@@ -16,6 +17,7 @@ const EditCloth = ({edit, cloth}) => {
     const [inputCustomCategory, setCustomCategory] = useState("");
     const [location, setLocation] = useState("");
     const [description, setDescription] = useState("");
+    const navigate = useNavigate();
 
     const onChangeSeasonCategory = (e) => {
         setSeasonCategory(e.target.value);
@@ -60,7 +62,13 @@ const EditCloth = ({edit, cloth}) => {
                 "Content-Type": `multipart/form-data; `,
             }
 
-        }).then(response => console.log(response))
+        })
+        .then(response => {
+            console.log(response);
+            alert(`의류가 ${response.data.location}에 저장되었습니다!`);
+            navigate(-1);
+        })
+        .catch(e => console.log(e));
     }
     return(
         <div className="addCloth">

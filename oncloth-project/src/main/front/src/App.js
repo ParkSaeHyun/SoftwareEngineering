@@ -19,14 +19,6 @@ function App() {
   const mode = true;
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    const user = JSON.parse(localStorage.getItem('user'));
-    if(user)
-    {
-      dispatch(login(user))
-    }
-  },
-  [])
   return (
     <>
     <Routes>
@@ -34,7 +26,7 @@ function App() {
       <Route path="/login" element={<LoginPage />}/>
       <Route path="/register" element = {<RegisterPage/>}/>
       <Route path="/findmypw" element = {<FindMyPwPage/>}/>
-      <Route path="/:weather" element = {<CategoryList />}/>
+      <Route path="/:season" element = {<CategoryList />}/>
       <Route path="/editcloth" element= {<EditCloth />} /> 
       <Route path="/clothlist" element = {<ClothList name = "안녕" />}/>
       <Route path="/editUser" element = {<EditUserPage />}/>
