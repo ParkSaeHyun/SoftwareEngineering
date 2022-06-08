@@ -4,9 +4,11 @@ import com.oncloth.onclothproject.model.ModifyForm;
 import com.oncloth.onclothproject.model.User;
 import com.oncloth.onclothproject.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+@Service
 public class ModifyService {
     private final UserRepository userRepository;
 
