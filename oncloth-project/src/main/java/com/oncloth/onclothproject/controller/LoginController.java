@@ -25,9 +25,9 @@ public class LoginController {
     @PostMapping("/api/login/")
     public User loginUser(@RequestBody LoginForm loginForm){
         Optional<User> optionalUser = loginService.userValidation(loginForm);
-        log.info("테스트테스트 보이는지?");
-        log.info(optionalUser.get().getUserid());
-        log.info(optionalUser.get().getUserpassword());
+//        log.info("테스트테스트 보이는지?");
+//        log.info(optionalUser.get().getUserid());
+//        log.info(optionalUser.get().getUserpassword());
         return optionalUser.get();
     }
 }
