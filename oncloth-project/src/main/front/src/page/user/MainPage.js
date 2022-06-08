@@ -4,7 +4,8 @@ import Header from "../../base/Header";
 import CustomCategoryList from "../cloth/CustomCategoryList";
 import style from "../style/MainPage.css"
 
-const MainPage = ({mode}) => {
+const MainPage = () => {
+    const mode = true;
     const categoty = [];
     for(let i = 0; i < 6; i++){
         categoty.push(`사용자지정 ${i}`);
