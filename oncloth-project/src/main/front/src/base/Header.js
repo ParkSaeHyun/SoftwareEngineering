@@ -1,3 +1,4 @@
+import React from 'react';
 import Button from "./Button";
 import logo from "./소공로고.jpg";
 import style from "./style/Header.css"

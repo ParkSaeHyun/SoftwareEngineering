@@ -2,14 +2,12 @@ package com.oncloth.onclothproject.service;
 
 import com.oncloth.onclothproject.dto.ClothDto;
 import com.oncloth.onclothproject.model.Cloth;
-import com.oncloth.onclothproject.model.ModifyForm;
 import com.oncloth.onclothproject.repository.ClothRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -19,7 +17,7 @@ public class ClothService {
     @Autowired
     private ClothRepository clothRepository;
 
-    public void create(ClothDto clothDto,MultipartFile file) throws Exception{
+    public Cloth create(ClothDto clothDto,MultipartFile file) throws Exception{
 
         UUID uuid = UUID.randomUUID();
         String filename = uuid + "_" + file.getOriginalFilename();
@@ -33,7 +31,8 @@ public class ClothService {
 
         file.transferTo(saveFile);
 
-        clothRepository.save(new Cloth(clothDto));
+        Cloth cloth1 = clothRepository.save(new Cloth(clothDto));
+        return cloth1;
     }
 
     public Optional<Cloth> read(Long id){

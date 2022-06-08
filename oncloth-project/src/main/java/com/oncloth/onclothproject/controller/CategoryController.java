@@ -20,7 +20,7 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
-    @PostMapping("/api/{season}")
+    @PostMapping("/api/category/{season}")
     public List<Cloth> readSpring(@PathVariable String season) {
         List<Cloth> clothList = categoryService.mainCategoryRead(season);
         return clothList;

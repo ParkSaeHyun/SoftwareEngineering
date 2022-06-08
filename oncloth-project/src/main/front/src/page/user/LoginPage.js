@@ -1,3 +1,4 @@
+import React from 'react';
 import Button from "../../base/Button";
 import style from "../style/LoginPage.css";
 import { Link } from "react-router-dom";

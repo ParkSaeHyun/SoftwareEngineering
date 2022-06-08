@@ -1,3 +1,4 @@
+import React from 'react';
 import LoginPage from "./page/user/LoginPage";
 import RegisterPage from "./page/user/RegisterPage";
 import { Routes, Route, Router } from "react-router";
