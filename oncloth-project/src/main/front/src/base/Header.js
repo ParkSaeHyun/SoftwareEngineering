@@ -7,7 +7,7 @@ import Logo from "./Logo";
 import { useSelector } from "react-redux";
 
 const Header = ({mode}) => {
-    const user = useSelector(state => state.userState.user)
+    let user = JSON.parse(localStorage.getItem('user'));
     const name = "재석이짱";
     return(
         <div>          
@@ -19,7 +19,7 @@ const Header = ({mode}) => {
                         <Button type="submit">검색</Button> 
                     </form>
                     <div>
-                        <span>반갑습니다 {name}님!</span>
+                        <span>반갑습니다 {user.usernickname}님!</span>
                         <Link to="/login" ><Button>로그아웃</Button></Link>
                     </div>
                     <div>

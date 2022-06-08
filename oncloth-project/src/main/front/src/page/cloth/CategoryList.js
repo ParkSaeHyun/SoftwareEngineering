@@ -7,17 +7,20 @@ import Header from "../../base/Header";
 import { Route, useParams } from "react-router";
 import Button from "../../base/Button";
 import { useState } from "react";
-import {axios} from 'axios';
+import axios from 'axios';
 
 const CategoryList = () => {
     const detailCategory = ["상의", "하의", "겉옷", "신발", "악세서리"];
-    const {weather} = useParams();
+    const {season} = useParams();
     const [all, setAll] = useState(false);
     const [filteredData, setFilteredData] = useState([])
     const onClink = (e) => {
         setAll(true);
         setFilteredData(itemData.filter((cloth) => cloth.category === e.target.value));
     }
+    axios.get(`http://localhost:8080/api/category/${season}`)
+    .then(response => console.log(response))
+    .catch(e => console.log(e));
     return(
         <>
             <Header mode />
