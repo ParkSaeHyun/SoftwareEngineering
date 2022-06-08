@@ -18,9 +18,9 @@ const CategoryList = () => {
         setAll(true);
         setFilteredData(itemData.filter((cloth) => cloth.category === e.target.value));
     }
-    axios.get(`http://localhost:8080/api/category/${season}`)
+    axios.get(`/api/category/${season}`)
     .then(response => console.log(response))
-    .catch(e => console.log(e));
+    .catch(e => alert(e));
     return(
         <>
             <Header mode />
