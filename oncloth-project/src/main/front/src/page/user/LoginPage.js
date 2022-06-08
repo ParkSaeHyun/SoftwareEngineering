@@ -31,12 +31,11 @@ const LoginPage = () => {
             userpassword: inputPw
         };
 
-        const result = axios.post("/api/login/", data,{headers:{
+        axios.post("/api/login/", data,{headers:{
                 "Content-Type":"application/json"
-            }});
-        console.log(result);
-        localStorage.setItem('user', JSON.stringify(result));
+            }}).then(response => console.log(response));
         alert("환영합니다 :)");
+        navigate("/")
     };
 
 

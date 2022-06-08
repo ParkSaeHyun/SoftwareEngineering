@@ -5,6 +5,7 @@ import com.oncloth.onclothproject.model.Cloth;
 import com.oncloth.onclothproject.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,8 +21,8 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
-    @PostMapping("/api/category/{season}")
-    public List<Cloth> readSpring(@PathVariable String season) {
+    @GetMapping("/api/category/{season}")
+    public List<Cloth> readSpring(@PathVariable("season") String season) {
         List<Cloth> clothList = categoryService.mainCategoryRead(season);
         return clothList;
     }
