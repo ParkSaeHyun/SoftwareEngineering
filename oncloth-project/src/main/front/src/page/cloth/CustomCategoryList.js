@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState } from "react";
 import Button from "../../base/Button";
 import style from "../style/MainPage.css";
