@@ -9,7 +9,7 @@ import java.util.List;
 @Repository
 public interface ClothRepository extends JpaRepository<Cloth,Long> {
     //TrashbinService 에서 Read()에 사용
-//    public List<Cloth> findByTrashbin(Boolean trashbin);
+    public List<Cloth> findByTrashbin(Boolean trashbin);
 
     //clothSearch()에 사용
     public List<Cloth> findByDescriptionLike(String keyword);

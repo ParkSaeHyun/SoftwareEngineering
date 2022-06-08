@@ -8,11 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Optional;
 
 @Slf4j //로그로 출력값 확인하는 테스트 용도
-@Controller
+@RestController
 public class LoginController {
     private final LoginService loginService;
 
@@ -22,11 +23,11 @@ public class LoginController {
     }
 
     @PostMapping("/api/login/")
-    public Optional<User> loginUser(@RequestBody LoginForm loginForm){
+    public User loginUser(@RequestBody LoginForm loginForm){
         Optional<User> optionalUser = loginService.userValidation(loginForm);
         log.info("테스트테스트 보이는지?");
         log.info(optionalUser.get().getUserid());
         log.info(optionalUser.get().getUserpassword());
-        return optionalUser;
+        return optionalUser.get();
     }
 }
