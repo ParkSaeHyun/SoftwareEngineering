@@ -12,6 +12,7 @@ import TrashBin from './page/cloth/TrashBin'
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { login } from "./redux/login";
+import AddCloth from './page/cloth/AddCloth';
 
 
 
@@ -27,7 +28,8 @@ function App() {
       <Route path="/register" element = {<RegisterPage/>}/>
       <Route path="/findmypw" element = {<FindMyPwPage/>}/>
       <Route path="/:season" element = {<CategoryList />}/>
-      <Route path="/editcloth" element= {<EditCloth />} /> 
+      <Route path="/addcloth" element= {<AddCloth />} />
+      <Route path="/editcloth/:id" element ={<EditCloth />}/>
       <Route path="/clothlist" element = {<ClothList name = "안녕" />}/>
       <Route path="/editUser" element = {<EditUserPage />}/>
       <Route path="/trashbin" element = {<TrashBin /> } />

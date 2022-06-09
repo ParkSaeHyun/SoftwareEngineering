@@ -1,17 +1,15 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Button from "../../base/Button";
 import logo from "../../base/소공로고.jpg";
 import {useState} from "react";
 import {Link} from "react-router-dom"
-import { useNavigate, useParams } from "react-router";
+import { useNavigate } from "react-router";
 import style from "../style/EditCloth.css";
 import TextField from '@mui/material/TextField';
 import axios from "axios";
 
-const EditCloth = ({edit, cloth}) => {
+const AddCloth = ({edit, cloth}) => {
     const customCategory = ["1", "2", "3", "4"];
-    const {id} = useParams();
-
     const [inputImg, setInputImg] = useState(''); //미리보기
     const [imgFile, setImgFile] = useState(null); //이미지
     const [seasonCategory, setSeasonCategory] = useState("spring");
@@ -21,20 +19,6 @@ const EditCloth = ({edit, cloth}) => {
     const [description, setDescription] = useState("");
     const navigate = useNavigate();
 
-    useEffect(() => {
-        axios.get(`/api/cloth/read/${id}`)
-        .then(response => {
-            console.log(response);
-            setSeasonCategory(response.data.seasoncategory);
-            setPartCategory(response.data.partcategory);
-            setCustomCategory(response.data.customcategory);
-            setLocation(response.data.location);
-            setDescription(response.data.description);
-            setInputImg(response.data.imagepath);
-
-        })
-        .catch(e => alert(e));
-    }, [])
     const onChangeSeasonCategory = (e) => {
         setSeasonCategory(e.target.value);
     }
@@ -72,6 +56,7 @@ const EditCloth = ({edit, cloth}) => {
         fd.append('customcategory', inputCustomCategory);
         fd.append('location', location);
         fd.append('description', description);
+        console.log(fd)
         await axios.post('api/cloth/create', fd, {
             headers: {
                 "Content-Type": `multipart/form-data; `,
@@ -80,7 +65,7 @@ const EditCloth = ({edit, cloth}) => {
         })
         .then(response => {
             console.log(response);
-            alert(`의류가 수정 되었습니다!`);
+            alert(`의류가 ${response.data.location}에 저장되었습니다!`);
             navigate(-1);
         })
         .catch(e => console.log(e));
@@ -90,7 +75,10 @@ const EditCloth = ({edit, cloth}) => {
             <main className="addClothBox">
                 <header className="addClothHeader">
                     <Link to = "/"><img src={logo} alt="logo" /></Link>
-                    <h1>옷 편집하기</h1>
+                    {true ?
+                        <h1 >옷 추가하기</h1>:
+                        <h1>옷 편집하기</h1>
+                    }
                 </header>
                 <form onSubmit={onSubmitCloth} className="addClothForm">
                     <div className="addClothFormInput">
@@ -107,15 +95,15 @@ const EditCloth = ({edit, cloth}) => {
                                         "fontWeight": 600,
                                         "width": "100%"}}>이미지 미리보기</div>}
                             </div>
-                            <input type="file" value={imgFile} id="file" multiple="multiple" placeholder="" onChange={(e) => encodeFileToBase64(e, e.target.files[0])}/>
+                            <input type="file" id="file" multiple="multiple" placeholder="" onChange={(e) => encodeFileToBase64(e, e.target.files[0])}/>
                             <div>
-                                <select onChange={onChangeSeasonCategory} className="addClothSelect" value={seasonCategory}>
+                                <select onChange={onChangeSeasonCategory} className="addClothSelect" name="" id="">
                                     <option value="spring">봄</option>
                                     <option value="summer">여름</option>
                                     <option value="autumn">가을</option>
                                     <option value="winter">겨울</option>
                                 </select>
-                                <select onChange={onChangePartCategory} className="addClothSelect" value={partCategory}>
+                                <select onChange={onChangePartCategory} className="addClothSelect" name="" id="">
                                     <option value="상의">상의</option>
                                     <option value="하의">하의</option>
                                     <option value="겉옷">겉옷</option>
@@ -127,8 +115,8 @@ const EditCloth = ({edit, cloth}) => {
                         <div className="addClothFormRight">
                             <input onChange={onChangeLocation} value={location} type="text" placeholder="위치를 입력해주세요"/>
                             <textarea onChange={onChangeDescription} value={description} name="" id="" cols="20" rows="10" placeholder="상세정보를 입력해주세요"></textarea>
-                            <select className="addClothSelect" onChange={onChangeCustomCategory} name="" id=""  value={inputCustomCategory}>
-                                <option >--개인카테고리 선택--</option>
+                            <select className="addClothSelect" name="" id="">
+                                <option onChange={onChangeCustomCategory}>--개인카테고리 선택--</option>
                                 {customCategory.map((category) => (
                                     <option key={category} value={category}>{category}</option>
                                 ))}
@@ -136,7 +124,7 @@ const EditCloth = ({edit, cloth}) => {
                         </div>
                     </div>
                     <div className="addClothFormButton">
-                        <Button type="submit">편집</Button>
+                        <Button type="submit">제출</Button>
                         <Link to = "/"><Button>취소</Button></Link>
                     </div>
                 </form>
@@ -145,4 +133,4 @@ const EditCloth = ({edit, cloth}) => {
     );
 }
 
-export default EditCloth;
+export default AddCloth;
