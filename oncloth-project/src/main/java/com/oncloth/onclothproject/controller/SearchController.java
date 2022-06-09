@@ -1,5 +1,6 @@
 package com.oncloth.onclothproject.controller;
 
+import com.oncloth.onclothproject.model.FindpwForm;
 import com.oncloth.onclothproject.service.SearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,7 +17,7 @@ public class SearchController {
     }
 
     @PostMapping("/api/findmypw/")
-    public String searchPw(@RequestBody String id){
-        return searchService.foundPw(id);
+    public String searchPw(@RequestBody FindpwForm findpwForm){
+        return searchService.foundPw(findpwForm.getUserid());
     }
 }

@@ -9,6 +9,9 @@ import { useSelector } from "react-redux";
 const Header = ({mode}) => {
     let user = JSON.parse(localStorage.getItem('user'));
     const name = "재석이짱";
+    const onClickLogout = () => {
+        localStorage.removeItem('user');
+    };
     return(
         <div>          
             {user ? 
@@ -20,7 +23,7 @@ const Header = ({mode}) => {
                     </form>
                     <div>
                         <span>반갑습니다 {user.usernickname}님!</span>
-                        <Link to="/login" ><Button>로그아웃</Button></Link>
+                        <Link to="/login" ><Button onClick={onClickLogout}>로그아웃</Button></Link>
                     </div>
                     <div>
                         <Link to="/addcloth"><Button>옷 추가하기</Button></Link>

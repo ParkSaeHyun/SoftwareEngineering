@@ -3,11 +3,15 @@ import Button from "../../base/Button";
 import style from "../style/LoginPage.css";
 import { Link } from "react-router-dom";
 import Logo from "../../base/Logo";
+import { useNavigate } from "react-router";
 import axios from 'axios';
+
 const EditUserPage = () => {
     const [userid, setUserid] = useState("");
     const [usernickname, setUsernickname] = useState("");
     const [userpassword, setUserpassword] = useState("");
+    const navigate = useNavigate();
+
     const onChangeNickname = (e) => {
         setUsernickname(e.target.value);
     };
@@ -30,7 +34,11 @@ const EditUserPage = () => {
             }
             ,{headers:{
             "Content-Type":"application/json"
-        }}).then(response => console.log(response)).catch(e => alert(e));
+        }}).then(response => {
+                console.log(response);
+                alert("회원정보가 변경되었습니다!");
+                localStorage.setItem('user', JSON.stringify(response.data));
+            }).catch(e => alert(e));
     }
     return(
         <div className="loginBlock">
