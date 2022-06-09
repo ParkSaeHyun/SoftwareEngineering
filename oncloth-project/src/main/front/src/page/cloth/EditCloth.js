@@ -13,7 +13,6 @@ const EditCloth = ({edit, cloth}) => {
     const {id} = useParams();
 
     const [inputImg, setInputImg] = useState(''); //미리보기
-    const [imgFile, setImgFile] = useState(null); //이미지
     const [seasonCategory, setSeasonCategory] = useState("spring");
     const [partCategory, setPartCategory] = useState("상의");
     const [inputCustomCategory, setCustomCategory] = useState("");
@@ -31,7 +30,6 @@ const EditCloth = ({edit, cloth}) => {
             setLocation(response.data.location);
             setDescription(response.data.description);
             setInputImg(response.data.imagepath);
-
         })
         .catch(e => alert(e));
     }, [])
@@ -53,7 +51,6 @@ const EditCloth = ({edit, cloth}) => {
 
     const encodeFileToBase64 = (e, fileBlob) => {
         const reader = new FileReader();
-        setImgFile(e.target.files)
         reader.readAsDataURL(fileBlob);
         return new Promise((resolve) =>{
             reader.onload= () => {
@@ -63,15 +60,8 @@ const EditCloth = ({edit, cloth}) => {
         });
     }
 
-    const onSubmitCloth = async(e) => {
+    const onSubmitCloth = (e) => {
         e.preventDefault();
-        const fd = new FormData();
-        Object.values(imgFile).forEach((file) => fd.append("file", file));
-        fd.append('seasoncategory', seasonCategory);
-        fd.append('partcategory', partCategory);
-        fd.append('customcategory', inputCustomCategory);
-        fd.append('location', location);
-        fd.append('description', description);
         const data = {
             seasoncategory: seasonCategory,
             partcategory: partCategory,
@@ -79,7 +69,7 @@ const EditCloth = ({edit, cloth}) => {
             location: location,
             description: description
         }
-        await axios.post('api/cloth/create', fd, {
+        axios.post(`/api/cloth/modify/${id}`, data, {
             headers: {
                 "Content-Type":"application/json",
             }
@@ -114,7 +104,6 @@ const EditCloth = ({edit, cloth}) => {
                                         "fontWeight": 600,
                                         "width": "100%"}}>이미지 미리보기</div>}
                             </div>
-                            <input type="file" id="file" multiple="multiple" placeholder="" onChange={(e) => encodeFileToBase64(e, e.target.files[0])}/>
                             <div>
                                 <select onChange={onChangeSeasonCategory} className="addClothSelect" value={seasonCategory}>
                                     <option value="spring">봄</option>
