@@ -107,7 +107,7 @@ const EditCloth = ({edit, cloth}) => {
                                         "fontWeight": 600,
                                         "width": "100%"}}>이미지 미리보기</div>}
                             </div>
-                            <input type="file" value={imgFile} id="file" multiple="multiple" placeholder="" onChange={(e) => encodeFileToBase64(e, e.target.files[0])}/>
+                            <input type="file" id="file" multiple="multiple" placeholder="" onChange={(e) => encodeFileToBase64(e, e.target.files[0])}/>
                             <div>
                                 <select onChange={onChangeSeasonCategory} className="addClothSelect" value={seasonCategory}>
                                     <option value="spring">봄</option>
