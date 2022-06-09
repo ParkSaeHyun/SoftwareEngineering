@@ -20,7 +20,7 @@ public class CategoryController {
     }
 
     @GetMapping("/api/category/{season}")
-    public List<Cloth> readSpring(@PathVariable("season") String season) {
+    public List<Cloth> readMainCategory(@PathVariable("season") String season) {
         List<Cloth> clothList = categoryService.mainCategoryRead(season);
         return clothList;
     }
@@ -40,8 +40,8 @@ public class CategoryController {
         return updateCustomCategory(customCategoryDto);
     }
 
-    @GetMapping("/api/customcategory/")
-    public List<Cloth> customCategoryRead(@RequestParam Long id) {
+    @GetMapping("/api/customcategory/{id}")
+    public List<Cloth> readCustomCategory(@PathVariable("id") Long id) {
         List<Cloth> clothList = categoryService.customCategoryRead(id);
         return clothList;
     }
