@@ -67,6 +67,7 @@ public class ClothService {
         Optional<Cloth> originalcloth = clothRepository.findById(id);
         originalcloth.ifPresent(o->{
             o.setTrashbin(true);
+            clothRepository.save(o);
         });
     };
 
