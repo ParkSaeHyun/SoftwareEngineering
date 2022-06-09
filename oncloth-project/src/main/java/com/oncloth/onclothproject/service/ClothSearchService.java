@@ -15,7 +15,7 @@ public class ClothSearchService {
     }
 
     public List<Cloth> clothSearch(String keyword) {
-        List<Cloth> clothList = clothRepository.findByDescriptionLike(keyword);
+        List<Cloth> clothList = clothRepository.findByDescriptionLikeAndTrashbin(keyword, false);
         return clothList;
     }
 }

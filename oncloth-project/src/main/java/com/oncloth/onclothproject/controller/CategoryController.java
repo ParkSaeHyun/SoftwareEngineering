@@ -1,10 +1,10 @@
 package com.oncloth.onclothproject.controller;
 
-import com.oncloth.onclothproject.dto.CategoryDto;
+import com.oncloth.onclothproject.dto.ClothDto;
 import com.oncloth.onclothproject.model.Cloth;
+import com.oncloth.onclothproject.model.CustomCategory;
 import com.oncloth.onclothproject.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,9 +24,14 @@ public class CategoryController {
         return clothList;
     }
 
+    @PostMapping("/api/customcategory/create/")
+    public CustomCategory createCustomCategory(String name) {
+        return categoryService.createCustomCategory(name);
+    }
+
     @GetMapping("/api/customcategory/")
-    public List<Cloth> customCategoryRead(@RequestBody CategoryDto categoryDto) {
-        List<Cloth> clothList = categoryService.customCategoryRead(categoryDto);
+    public List<Cloth> customCategoryRead(@RequestParam Long id) {
+        List<Cloth> clothList = categoryService.customCategoryRead(id);
         return clothList;
     }
 }
