@@ -1,7 +1,6 @@
 package com.oncloth.onclothproject.controller;
 
 import com.oncloth.onclothproject.dto.ClothDto;
-import com.oncloth.onclothproject.dto.CustomCategoryDto;
 import com.oncloth.onclothproject.model.Cloth;
 import com.oncloth.onclothproject.model.CustomCategory;
 import com.oncloth.onclothproject.service.CategoryService;
@@ -25,14 +24,14 @@ public class CategoryController {
         return clothList;
     }
 
-    @PostMapping
+    @PostMapping("/api/customcategory/create/")
     public CustomCategory createCustomCategory(String name) {
         return categoryService.createCustomCategory(name);
     }
 
     @GetMapping("/api/customcategory/")
-    public List<Cloth> customCategoryRead(@RequestBody CustomCategoryDto customCategoryDto) {
-        List<Cloth> clothList = categoryService.customCategoryRead(customCategoryDto.getId());
+    public List<Cloth> customCategoryRead(@RequestParam Long id) {
+        List<Cloth> clothList = categoryService.customCategoryRead(id);
         return clothList;
     }
 }
