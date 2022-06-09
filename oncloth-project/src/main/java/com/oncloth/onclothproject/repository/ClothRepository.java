@@ -11,10 +11,10 @@ public interface ClothRepository extends JpaRepository<Cloth,Long> {
     //TrashbinService 에서 Read()에 사용
     public List<Cloth> findByTrashbin(Boolean trashbin);
 
-    //clothSearch()에 사용
-    public List<Cloth> findByDescriptionLike(String keyword);
+    //ClothSearchService에 사용
+    public List<Cloth> findByDescriptionLikeAndTrashbin(String keyword, boolean trashbin);
 
-    public List<Cloth> findBySeasoncategory(String season);
-
-    public List<Cloth> findByCustomcategory(String custom);
+    //CategoryService에 사용
+    public List<Cloth> findBySeasoncategoryAndTrashbin(String season, boolean trashbin);
+    public List<Cloth> findByCustomcategoryAndTrashbin(String custom, boolean trashbin);
 }
