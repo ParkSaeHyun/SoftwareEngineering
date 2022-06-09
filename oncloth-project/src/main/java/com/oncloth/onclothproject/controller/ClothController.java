@@ -35,8 +35,8 @@ public class ClothController {
 
     //옷 수정페이지에서 수정확인 버튼 클릭
     @PostMapping("api/cloth/modify/{id}")
-    public Optional<Cloth> update(@PathVariable("id") Long id, ClothDto clothDto, @RequestParam("file") MultipartFile file) {
-        return clothService.update(id, clothDto, file);
+    public Optional<Cloth> update(@PathVariable("id") Long id, @RequestBody ClothDto clothDto) {
+        return clothService.update(id, clothDto);
     }
 
     //옷 상세페이지에서 삭제버튼 클릭
