@@ -115,8 +115,8 @@ const AddCloth = ({edit, cloth}) => {
                         <div className="addClothFormRight">
                             <input onChange={onChangeLocation} value={location} type="text" placeholder="위치를 입력해주세요"/>
                             <textarea onChange={onChangeDescription} value={description} name="" id="" cols="20" rows="10" placeholder="상세정보를 입력해주세요"></textarea>
-                            <select className="addClothSelect" name="" id="">
-                                <option onChange={onChangeCustomCategory}>--개인카테고리 선택--</option>
+                            <select onChange={onChangeCustomCategory} className="addClothSelect" name="" id="">
+                                <option value="">--개인카테고리 선택--</option>
                                 {customCategory.map((category) => (
                                     <option key={category} value={category}>{category}</option>
                                 ))}

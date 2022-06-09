@@ -3,10 +3,12 @@ import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import Button from "../../base/Button";
 import Logo from "../../base/Logo";
+import { useNavigate } from "react-router";
 
 const FindMyPwPage = () => {
     const [userid, setUserid] = useState("");
     const [usernickname, setUsernickname] = useState("");
+    const navigate = useNavigate();
 
     const onChangeId = (e) => {
         setUserid(e.target.value);
@@ -25,7 +27,10 @@ const FindMyPwPage = () => {
         axios.post("/api/findmypw/", 
                     data,{headers:{
                         "Content-Type":"application/json"
-                    }}).then(response => console.log(response))
+                    }}).then(response => {
+                        alert(`비밀번호는 ${response.data}`);
+                        navigate("/");
+                })
                     .catch(e => alert(e));
     }
     return(
