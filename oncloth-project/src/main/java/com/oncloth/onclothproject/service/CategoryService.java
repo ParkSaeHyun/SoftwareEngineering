@@ -20,7 +20,7 @@ public class CategoryService {
         this.customCategoryRepository = customCategoryRepository;
     }
 
-    public List<Cloth> mainCategoryRead(String season) {
+    public List<Cloth> readMainCategory(String season) {
         List<Cloth> clothList = clothRepository.findBySeasoncategoryAndTrashbin(season, false);
         return clothList;
     }

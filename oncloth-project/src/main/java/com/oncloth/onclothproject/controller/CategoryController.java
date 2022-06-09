@@ -20,7 +20,7 @@ public class CategoryController {
 
     @GetMapping("/api/category/{season}")
     public List<Cloth> readMainCategory(@PathVariable("season") String season) {
-        List<Cloth> clothList = categoryService.mainCategoryRead(season);
+        List<Cloth> clothList = categoryService.readMainCategory(season);
         return clothList;
     }
 
