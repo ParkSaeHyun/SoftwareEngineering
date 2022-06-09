@@ -39,15 +39,15 @@ public class ClothService {
         Optional<Cloth> savedCloth = clothRepository.findById(id);
         return savedCloth;
     }
-    public Optional<Cloth> update(Long id,ClothDto clothDto,MultipartFile file){
+    public Optional<Cloth> update(Long id,ClothDto clothDto){
         Optional<Cloth> originalcloth = clothRepository.findById(id);
 
-        //create new image info
-        UUID uuid = UUID.randomUUID();
-        String filename = uuid + "_" + file.getOriginalFilename();
-
-        String projectPath = System.getProperty("user.dir") + "/src/main/resources/static/files";
-        File saveFile = new File(projectPath,filename);
+//        //create new image info
+//        UUID uuid = UUID.randomUUID();
+//        String filename = uuid + "_" + file.getOriginalFilename();
+//
+//        String projectPath = System.getProperty("user.dir") + "/src/main/resources/static/files";
+//        File saveFile = new File(projectPath,filename);
 
         //modify new to original
         originalcloth.ifPresent(u -> {
@@ -56,8 +56,8 @@ public class ClothService {
             u.setCustomcategory(clothDto.getCustomcategory());
             u.setLocation(clothDto.getLocation());
             u.setDescription(clothDto.getDescription());
-            u.setImagename(filename);
-            u.setImagepath("/files/"+filename);
+//            u.setImagename(filename);
+//            u.setImagepath("/files/"+filename);
             clothRepository.save(u);
         });
 

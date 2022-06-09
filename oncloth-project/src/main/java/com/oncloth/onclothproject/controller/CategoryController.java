@@ -30,6 +30,16 @@ public class CategoryController {
         return categoryService.createCustomCategory(customCategoryDto.getName());
     }
 
+    @PostMapping("/api/customcategory/remove/")
+    public CustomCategory removeCustomCategory(@RequestBody CustomCategoryDto customCategoryDto) {
+        return categoryService.delete(customCategoryDto);
+    }
+
+    @PostMapping("/api/customcategory/update/")
+    public CustomCategory updateCustomCategory(@RequestBody CustomCategoryDto customCategoryDto) {
+        return updateCustomCategory(customCategoryDto);
+    }
+
     @GetMapping("/api/customcategory/")
     public List<Cloth> customCategoryRead(@RequestParam Long id) {
         List<Cloth> clothList = categoryService.customCategoryRead(id);
