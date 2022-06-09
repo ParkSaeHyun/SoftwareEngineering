@@ -25,11 +25,11 @@ public class ModifyService {
 
         Optional<User> user = userRepository.findByUserid(id);
         user.ifPresent(u -> {
-            if(modifyForm.getUserpassword().isBlank() || modifyForm.getUsernickName().isBlank()){
+            if(modifyForm.getUserpassword().isBlank() || modifyForm.getUsernickname().isBlank()){
                 throw new IllegalStateException("비밀번호와 별명을 반드시 입력하세요.");
             }
             u.setUserpassword(modifyForm.getUserpassword());
-            u.setUsernickname(modifyForm.getUsernickName());
+            u.setUsernickname(modifyForm.getUsernickname());
             userRepository.save(u);
         });
         return user;

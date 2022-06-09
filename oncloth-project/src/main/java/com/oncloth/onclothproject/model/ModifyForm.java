@@ -8,5 +8,5 @@ import lombok.Setter;
 public class ModifyForm {
 
     private String userpassword;
-    private String usernickName;
+    private String usernickname;
 }
