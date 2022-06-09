@@ -68,8 +68,8 @@ const EditCloth = ({edit, cloth}) => {
             customcategory: customCategory,
             location: location,
             description: description
-        }
-        axios.post(`/api/cloth/modify/${id}`, data, {
+        };
+        axios.post(`/api/cloth/modify/${id}`, JSON.stringify(data), {
             headers: {
                 "Content-Type":"application/json",
             }
