@@ -7,9 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Optional;
-
+@RestController
 public class ModifyController {
     private final ModifyService modifyService;
 
@@ -18,9 +19,9 @@ public class ModifyController {
         this.modifyService = modifyService;
     }
 
-    @PostMapping("/api/editUser/{id}") //로그인이 된 상태의 id를 어떤 방법으로 받을지 생각해야 함.
-    public Optional<User> modifyInfo(@PathVariable("id") String id, @RequestBody ModifyForm modifyForm){
-        Optional<User> optionalUser = modifyService.modifyInfo(id, modifyForm);
-        return optionalUser;
+    @PostMapping("/api/editUser/{userid}") //로그인이 된 상태의 id를 어떤 방법으로 받을지 생각해야 함.
+    public User modifyInfo(@PathVariable("userid") String userid, @RequestBody ModifyForm modifyForm){
+        Optional<User> optionalUser = modifyService.modifyInfo(userid, modifyForm);
+        return optionalUser.get();
     }
 }

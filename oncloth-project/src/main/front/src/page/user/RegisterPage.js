@@ -1,3 +1,4 @@
+import React from 'react';
 import Button from "../../base/Button";
 import style from "../style/LoginPage.css";
 import img from "../../base/소공로고.jpg";
@@ -33,6 +34,7 @@ const RegisterPage = () => {
                 "Content-Type":"application/json"
             }});
         alert(`환영합니다! ${data.usernickname}님!`);
+        localStorage.setItem('user', JSON.stringify(data));
         navigate('/');
     };
 

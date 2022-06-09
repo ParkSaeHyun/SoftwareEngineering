@@ -1,3 +1,4 @@
+import React from 'react';
 import Button from "../../base/Button";
 import style from "../style/LoginPage.css";
 import { Link } from "react-router-dom";
@@ -30,12 +31,13 @@ const LoginPage = () => {
             userpassword: inputPw
         };
 
-        const result = axios.post("/api/login/", data,{headers:{
+        axios.post("/api/login/", data,{headers:{
                 "Content-Type":"application/json"
-            }});
-        console.log(result);
-        localStorage.setItem('user', JSON.stringify(result));
-        alert("환영합니다 :)");
+            }}).then(response => {
+                localStorage.setItem('user', JSON.stringify(response.data));
+            }).catch(e => alert(`${e}의 오류가 발생했습니다.`));
+            alert(`환영합니다!`)
+        navigate("/")
     };
 
 

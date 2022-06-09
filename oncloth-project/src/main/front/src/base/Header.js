@@ -1,3 +1,4 @@
+import React from 'react';
 import Button from "./Button";
 import logo from "./소공로고.jpg";
 import style from "./style/Header.css"
@@ -6,23 +7,26 @@ import Logo from "./Logo";
 import { useSelector } from "react-redux";
 
 const Header = ({mode}) => {
-    const user = useSelector(state => state.userState.user)
+    let user = JSON.parse(localStorage.getItem('user'));
     const name = "재석이짱";
+    const onClickLogout = () => {
+        localStorage.removeItem('user');
+    };
     return(
         <div>          
             {user ? 
                 <div className="header">
                     <Logo />
-                    <form className="header__Search">
+                    <form  className="header__Search">
                         <input className="header__searchInput" placeholder="검색어를 입력하세요" required />
                         <Button type="submit">검색</Button> 
                     </form>
                     <div>
-                        <span>반갑습니다 {name}님!</span>
-                        <Link to="/login" ><Button>로그아웃</Button></Link>
+                        <span>반갑습니다 {user.usernickname}님!</span>
+                        <Link to="/login" ><Button onClick={onClickLogout}>로그아웃</Button></Link>
                     </div>
                     <div>
-                        <Link to="/editcloth"><Button>옷 추가하기</Button></Link>
+                        <Link to="/addcloth"><Button>옷 추가하기</Button></Link>
                         <Link to="/edituser"><Button>회원정보 수정</Button></Link>
                     </div>
                 </div> 

@@ -1,3 +1,4 @@
+import React from 'react';
 import style from "./style/Button.css";
 
 const Button = ({children, type, onClick, value}) => {

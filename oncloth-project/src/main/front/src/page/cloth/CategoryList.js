@@ -1,3 +1,4 @@
+import React from 'react';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
@@ -6,54 +7,26 @@ import Header from "../../base/Header";
 import { Route, useParams } from "react-router";
 import Button from "../../base/Button";
 import { useState } from "react";
+import axios from 'axios';
+import ClothList from './ClothList';
 
 const CategoryList = () => {
     const detailCategory = ["상의", "하의", "겉옷", "신발", "악세서리"];
-    const {weather} = useParams();
+    const {season} = useParams();
     const [all, setAll] = useState(false);
-    const [filteredData, setFilteredData] = useState([])
+    const [filteredData, setFilteredData] = useState([]);
+    const [clothList, setClothList] = useState([]);
     const onClink = (e) => {
         setAll(true);
         setFilteredData(itemData.filter((cloth) => cloth.category === e.target.value));
     }
-
+    axios.get(`/api/category/${season}`)
+    .then(response => setClothList(response.data))
+    .catch(e => alert(e));
     return(
         <>
             <Header mode />
-            <div className="detailCategory">
-                {detailCategory.map(option => (
-                    <Button onClick = {onClink} value = {option}>
-                        {option}
-                    </Button>
-                ))}
-            </div>
-            <div style={{"textAlign": "center"}}>
-                <ImageList sx={{ width: 500, height: 450 }}>
-                    <ImageListItem key="Subheader" cols={2}>
-                    </ImageListItem>
-                    {filteredData.map((item) => (
-                        <ImageListItem key={item.img}>
-                            <img
-                                src={`${item.img}?w=248&fit=crop&auto=format`}
-                                srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
-                                alt={item.title}
-                                loading="lazy"
-                            />
-                            <ImageListItemBar
-                                title={item.title}
-                                subtitle={item.category}
-                                actionIcon={
-                                <IconButton
-                                    sx={{ color: 'rgba(255, 255, 255, 0.54)' }}
-                                    aria-label={`info about ${item.title}`}
-                                >
-                                </IconButton>
-                                }
-                            />
-                        </ImageListItem>
-                    ))}
-                    </ImageList>
-                </div>
+            <ClothList clothList={clothList} />
         </>
     );
 };
