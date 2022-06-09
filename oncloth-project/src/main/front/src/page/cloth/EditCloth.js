@@ -63,13 +63,14 @@ const EditCloth = ({edit, cloth}) => {
     const onSubmitCloth = (e) => {
         e.preventDefault();
         const data = {
+            id: id,
             seasoncategory: seasonCategory,
             partcategory: partCategory,
             customcategory: customCategory,
             location: location,
             description: description
         }
-        axios.post(`/api/cloth/modify/${id}`, data, {
+        axios.post(`/api/cloth/modify/${id}`, JSON.stringify(data), {
             headers: {
                 "Content-Type":"application/json",
             }
