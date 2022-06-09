@@ -72,9 +72,16 @@ const EditCloth = ({edit, cloth}) => {
         fd.append('customcategory', inputCustomCategory);
         fd.append('location', location);
         fd.append('description', description);
+        const data = {
+            seasoncategory: seasonCategory,
+            partcategory: partCategory,
+            customcategory: customCategory,
+            location: location,
+            description: description
+        }
         await axios.post('api/cloth/create', fd, {
             headers: {
-                "Content-Type": `multipart/form-data; `,
+                "Content-Type":"application/json",
             }
 
         })
