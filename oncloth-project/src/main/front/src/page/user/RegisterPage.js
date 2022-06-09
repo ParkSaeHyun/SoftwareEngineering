@@ -34,6 +34,7 @@ const RegisterPage = () => {
                 "Content-Type":"application/json"
             }});
         alert(`환영합니다! ${data.usernickname}님!`);
+        localStorage.setItem('user', JSON.stringify(data));
         navigate('/');
     };
 

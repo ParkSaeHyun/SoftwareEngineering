@@ -5,16 +5,16 @@ import CustomCategoryList from "../cloth/CustomCategoryList";
 import style from "../style/MainPage.css"
 
 const MainPage = () => {
-    const mode = true;
+    let user = JSON.parse(localStorage.getItem('user'));
     const categoty = [];
     for(let i = 0; i < 6; i++){
         categoty.push(`사용자지정 ${i}`);
     }
     return(
         <div>
-            {mode ? //로그인 상태
+            {user ? //로그인 상태
                 <div>
-                    <Header mode={mode} />
+                    <Header/>
                     <div className="mainWeather">
                         <Link to="/spring"><button>봄</button></Link>
                         <Link to="/summer"><button>여름</button></Link>
@@ -25,7 +25,7 @@ const MainPage = () => {
                 </div>
                 : //로그아웃 상태
                 <div>
-                    <Header mode={mode} />
+                    <Header />
                     <h2 style={{'textAlign': 'center', 'fontSize': '2.5rem'}}>우리는 ON CLOTH입니다.</h2>
                     <main className="unloginIntro">
                         <article className="unloginIntro_">
