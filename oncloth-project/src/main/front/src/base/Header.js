@@ -14,7 +14,7 @@ const Header = ({mode}) => {
             {user ? 
                 <div className="header">
                     <Logo />
-                    <form className="header__Search">
+                    <form  className="header__Search">
                         <input className="header__searchInput" placeholder="검색어를 입력하세요" required />
                         <Button type="submit">검색</Button> 
                     </form>
@@ -23,7 +23,7 @@ const Header = ({mode}) => {
                         <Link to="/login" ><Button>로그아웃</Button></Link>
                     </div>
                     <div>
-                        <Link to="/editcloth"><Button>옷 추가하기</Button></Link>
+                        <Link to="/addcloth"><Button>옷 추가하기</Button></Link>
                         <Link to="/edituser"><Button>회원정보 수정</Button></Link>
                     </div>
                 </div> 
