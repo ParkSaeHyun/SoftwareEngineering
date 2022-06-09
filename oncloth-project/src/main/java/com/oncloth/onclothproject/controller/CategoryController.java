@@ -1,6 +1,7 @@
 package com.oncloth.onclothproject.controller;
 
 import com.oncloth.onclothproject.dto.ClothDto;
+import com.oncloth.onclothproject.dto.CustomCategoryDto;
 import com.oncloth.onclothproject.model.Cloth;
 import com.oncloth.onclothproject.model.CustomCategory;
 import com.oncloth.onclothproject.service.CategoryService;
@@ -25,8 +26,8 @@ public class CategoryController {
     }
 
     @PostMapping("/api/customcategory/create/")
-    public CustomCategory createCustomCategory(String name) {
-        return categoryService.createCustomCategory(name);
+    public CustomCategory createCustomCategory(@RequestBody CustomCategoryDto customCategoryDto) {
+        return categoryService.createCustomCategory(customCategoryDto.getName());
     }
 
     @GetMapping("/api/customcategory/")
