@@ -20,7 +20,7 @@ public class CategoryService {
         this.customCategoryRepository = customCategoryRepository;
     }
 
-    public List<Cloth> mainCategoryRead(String season) {
+    public List<Cloth> readMainCategory(String season) {
         List<Cloth> clothList = clothRepository.findBySeasoncategoryAndTrashbin(season, false);
         return clothList;
     }
@@ -46,11 +46,14 @@ public class CategoryService {
         return customCategoryRepository.save(updatedCustomCategory);
     }
 
-    public List<Cloth> customCategoryRead(Long id) {
+    public List<Cloth> readCustomCategory(Long id) {
         Optional<CustomCategory> customCategory = customCategoryRepository.findById(id);
         List<Cloth> clothList = clothRepository.
                 findByCustomcategoryAndTrashbin(customCategory.get().getName(), false);
         return clothList;
     }
 
+    public List<CustomCategory> readCustomCategoryList() {
+        return customCategoryRepository.findAll();
+    }
 }

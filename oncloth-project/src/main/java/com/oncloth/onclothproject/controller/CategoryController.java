@@ -1,6 +1,5 @@
 package com.oncloth.onclothproject.controller;
 
-import com.oncloth.onclothproject.dto.ClothDto;
 import com.oncloth.onclothproject.dto.CustomCategoryDto;
 import com.oncloth.onclothproject.model.Cloth;
 import com.oncloth.onclothproject.model.CustomCategory;
@@ -20,8 +19,8 @@ public class CategoryController {
     }
 
     @GetMapping("/api/category/{season}")
-    public List<Cloth> readSpring(@PathVariable("season") String season) {
-        List<Cloth> clothList = categoryService.mainCategoryRead(season);
+    public List<Cloth> readMainCategory(@PathVariable("season") String season) {
+        List<Cloth> clothList = categoryService.readMainCategory(season);
         return clothList;
     }
 
@@ -40,9 +39,14 @@ public class CategoryController {
         return updateCustomCategory(customCategoryDto);
     }
 
-    @GetMapping("/api/customcategory/")
-    public List<Cloth> customCategoryRead(@RequestParam Long id) {
-        List<Cloth> clothList = categoryService.customCategoryRead(id);
+    @GetMapping("/api/customcategory/{id}")
+    public List<Cloth> readCustomCategory(@PathVariable("id") Long id) {
+        List<Cloth> clothList = categoryService.readCustomCategory(id);
         return clothList;
+    }
+
+    @GetMapping("/api/customcategory/list/")
+    public List<CustomCategory> readCustomCategoryList() {
+        return categoryService.readCustomCategoryList();
     }
 }
