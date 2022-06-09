@@ -17,8 +17,8 @@ public class ClothSearchController {
         this.clothSearchService = clothSearchService;
     }
 
-    @GetMapping("/api/search/")
-    public List<Cloth> clothSearch(@RequestParam String keyword) {
+    @GetMapping("/api/search/{keyword}")
+    public List<Cloth> clothSearch(@PathVariable("keyword") String keyword) {
         List<Cloth> clothList = clothSearchService.clothSearch(keyword);
         return clothList;
     }
