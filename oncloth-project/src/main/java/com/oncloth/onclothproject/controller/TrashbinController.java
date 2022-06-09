@@ -29,13 +29,13 @@ public class TrashbinController {
         return trashbinService.trashbinRead();
     }
 
-    @PostMapping("/api/trashbin/remove/")
-    public Cloth trashbinRemove(@RequestBody Long clothId){
-        return trashbinService.trashbinRemove(clothId).get();
-        //deleteBy 메소드는 리턴값이 void
+    @PostMapping("/api/trashbin/remove/{id}")
+    public String trashbinRemove(@PathVariable("id") Long clothId){
+        trashbinService.trashbinRemove(clothId);
+        return "영구삭제 성공!";
     }
-    @PostMapping("/api/trashbin/restore/")
-    public Cloth trashbinRestore(@RequestBody Long clothId){
+    @PostMapping("/api/trashbin/restore/{id}")
+    public Cloth trashbinRestore(@PathVariable("id") Long clothId){
         return trashbinService.trashbinRestore(clothId).get();
     }
 }
