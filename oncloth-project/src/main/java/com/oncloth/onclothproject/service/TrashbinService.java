@@ -26,18 +26,17 @@ public class TrashbinService {
     }
 
     public List<Cloth> trashbinRead(){
-        clothRepository.findByTrashbin(true).forEach(cloth -> {
-            log.info(cloth.getDescription());
-        });
+//        clothRepository.findByTrashbin(true).forEach(cloth -> {
+//            log.info(cloth.getDescription());
+//        });
         return clothRepository.findByTrashbin(true);
 
     };
-    public Optional<Cloth> trashbinRemove(Long clothId){
+    public void trashbinRemove(Long clothId){
         Optional<Cloth> optionalCloth = clothRepository.findById(clothId);
         optionalCloth.ifPresent(cloth -> {
             clothRepository.deleteById(clothId);
         });
-        return optionalCloth;
     };
     public Optional<Cloth> trashbinRestore(Long clothId){
         Optional<Cloth> optionalCloth = clothRepository.findById(clothId);
