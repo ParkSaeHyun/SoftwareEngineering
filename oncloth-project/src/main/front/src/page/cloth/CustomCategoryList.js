@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Button from "../../base/Button";
 import style from "../style/MainPage.css";
 import Typography from '@mui/material/Typography';
@@ -20,10 +20,17 @@ const styled = {
 };
 
 const CustomCategoryList = () => {
-    const categories = [];
-    for(let i = 0; i < 6; i++){
-        categories.push(`사용자지정 ${i}`);
-    }
+    const [CustomCategories, setCustomCategories] = useState([]);
+
+    useEffect(() => {
+        axios.get("/api/customcategory/list/")
+        .then(response => {
+            console.log(response);
+            setCustomCategories(response.data);
+            console.log(CustomCategories);
+        })
+        .catch(e => alert(e));
+    }, [])
     const [newCustomCategory, setNewCustomCategory] = useState("");
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
@@ -37,15 +44,16 @@ const CustomCategoryList = () => {
             name: newCustomCategory
         };
         axios.post("/api/customcategory/create/", data).then(response => console.log(response)).catch(e => alert(e));
+
     }
     return (
         <div style={{"margin": "1rem 5rem"}}>
             <Button onClick={handleOpen} style={{"margin-left": "5rem"}}>my style 생성</Button>
             <div className="MyStyleList">
-                {categories.map((category, index) => 
+                {CustomCategories.map((category, index) => 
                 (<button key={index}>
                     <div className="altImg"></div>
-                    <span>{category}</span>
+                    <span>{category.name}</span>
                 </button>))}
             </div>
             <Modal
