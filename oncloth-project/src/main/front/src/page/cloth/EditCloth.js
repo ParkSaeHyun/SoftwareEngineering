@@ -8,9 +8,8 @@ import style from "../style/EditCloth.css";
 import TextField from '@mui/material/TextField';
 import axios from "axios";
 
-const EditCloth = ({edit, cloth}) => {
+const EditCloth = ({cloth, id}) => {
     const customCategory = ["1", "2", "3", "4"];
-    const {id} = useParams();
 
     const [inputImg, setInputImg] = useState(''); //미리보기
     const [seasonCategory, setSeasonCategory] = useState("spring");
@@ -19,20 +18,15 @@ const EditCloth = ({edit, cloth}) => {
     const [location, setLocation] = useState("");
     const [description, setDescription] = useState("");
     const navigate = useNavigate();
-
+    console.log(cloth);
     useEffect(() => {
-        axios.get(`/api/cloth/read/${id}`)
-        .then(response => {
-            console.log(response);
-            setSeasonCategory(response.data.seasoncategory);
-            setPartCategory(response.data.partcategory);
-            setCustomCategory(response.data.customcategory);
-            setLocation(response.data.location);
-            setDescription(response.data.description);
-            setInputImg(response.data.imagepath);
-        })
-        .catch(e => alert(e));
-    }, [])
+        setSeasonCategory(cloth.seasoncategory);
+        setPartCategory(cloth.partcategory);
+        setCustomCategory(cloth.customcategory);
+        setLocation(cloth.location);
+        setDescription(cloth.description);
+        setInputImg(cloth.imagepath);
+        }, [cloth])
     const onChangeSeasonCategory = (e) => {
         setSeasonCategory(e.target.value);
     }
@@ -63,12 +57,13 @@ const EditCloth = ({edit, cloth}) => {
     const onSubmitCloth = (e) => {
         e.preventDefault();
         const data = {
+            id: id,
             seasoncategory: seasonCategory,
             partcategory: partCategory,
             customcategory: customCategory,
             location: location,
             description: description
-        };
+        }
         axios.post(`/api/cloth/modify/${id}`, JSON.stringify(data), {
             headers: {
                 "Content-Type":"application/json",
