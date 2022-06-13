@@ -29,14 +29,16 @@ public class CategoryController {
         return categoryService.createCustomCategory(customCategoryDto.getName());
     }
 
-    @PostMapping("/api/customcategory/remove/")
-    public CustomCategory removeCustomCategory(@RequestBody CustomCategoryDto customCategoryDto) {
+    @PostMapping("/api/customcategory/{id}/remove/")
+    public CustomCategory removeCustomCategory(@PathVariable("id") Long id,
+                                               @RequestBody CustomCategoryDto customCategoryDto) {
         return categoryService.delete(customCategoryDto);
     }
 
-    @PostMapping("/api/customcategory/update/")
-    public CustomCategory updateCustomCategory(@RequestBody CustomCategoryDto customCategoryDto) {
-        return updateCustomCategory(customCategoryDto);
+    @PostMapping("/api/customcategory/{id}/update/")
+    public CustomCategory updateCustomCategory(@PathVariable("id") Long id,
+                                               @RequestBody CustomCategoryDto customCategoryDto) {
+        return categoryService.update(customCategoryDto);
     }
 
     @GetMapping("/api/customcategory/{id}")
