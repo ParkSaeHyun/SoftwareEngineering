@@ -1,30 +1,10 @@
 {
-<<<<<<< HEAD
   "main.css": "/static/css/main.b7575693.chunk.css",
-  "main.js": "/static/js/main.17030833.chunk.js",
-  "main.js.map": "/static/js/main.17030833.chunk.js.map",
+  "main.js": "/static/js/main.4204631b.chunk.js",
+  "main.js.map": "/static/js/main.4204631b.chunk.js.map",
   "static/js/1.4620c4dd.chunk.js": "/static/js/1.4620c4dd.chunk.js",
   "static/js/1.4620c4dd.chunk.js.map": "/static/js/1.4620c4dd.chunk.js.map",
-  "static/js/2.81a4e905.chunk.js": "/static/js/2.81a4e905.chunk.js",
-  "static/js/2.81a4e905.chunk.js.map": "/static/js/2.81a4e905.chunk.js.map",
-  "runtime~main.js": "/static/js/runtime~main.7fc5fb15.js",
-  "runtime~main.js.map": "/static/js/runtime~main.7fc5fb15.js.map",
-  "static/css/main.b7575693.chunk.css.map": "/static/css/main.b7575693.chunk.css.map",
-  "index.html": "/index.html",
-  "precache-manifest.ae931a9614d5a05c7a4f9fb6f5315735.js": "/precache-manifest.ae931a9614d5a05c7a4f9fb6f5315735.js",
-=======
-  "main.css": "/static/css/main.d3dd3953.chunk.css",
-  "main.js": "/static/js/main.1e99661a.chunk.js",
-  "main.js.map": "/static/js/main.1e99661a.chunk.js.map",
-  "static/js/1.4620c4dd.chunk.js": "/static/js/1.4620c4dd.chunk.js",
-  "static/js/1.4620c4dd.chunk.js.map": "/static/js/1.4620c4dd.chunk.js.map",
-  "static/js/2.1d025810.chunk.js": "/static/js/2.1d025810.chunk.js",
-  "static/js/2.1d025810.chunk.js.map": "/static/js/2.1d025810.chunk.js.map",
-  "runtime~main.js": "/static/js/runtime~main.7fc5fb15.js",
-  "runtime~main.js.map": "/static/js/runtime~main.7fc5fb15.js.map",
-  "static/css/main.d3dd3953.chunk.css.map": "/static/css/main.d3dd3953.chunk.css.map",
-  "index.html": "/index.html",
-  "precache-manifest.3d7e3591b73fca8add365a2db31ced5f.js": "/precache-manifest.3d7e3591b73fca8add365a2db31ced5f.js",
->>>>>>> 210e03eb0a016679bcf65769034c0d8ff80d3b67
-  "service-worker.js": "/service-worker.js"
+  "static/js/2.c205cc2e.chunk.js": "/static/js/2.c205cc2e.chunk.js",
+  "static/js/2.c205cc2e.chunk.js.map": "/static/js/2.c205cc2e.chunk.js.map",
+
 }

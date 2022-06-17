@@ -8,33 +8,25 @@ import style from "../style/EditCloth.css";
 import TextField from '@mui/material/TextField';
 import axios from "axios";
 
-const EditCloth = ({edit, cloth}) => {
+const EditCloth = ({cloth, id}) => {
     const customCategory = ["1", "2", "3", "4"];
-    const {id} = useParams();
 
     const [inputImg, setInputImg] = useState(''); //미리보기
-    const [imgFile, setImgFile] = useState(null); //이미지
     const [seasonCategory, setSeasonCategory] = useState("spring");
     const [partCategory, setPartCategory] = useState("상의");
     const [inputCustomCategory, setCustomCategory] = useState("");
     const [location, setLocation] = useState("");
     const [description, setDescription] = useState("");
     const navigate = useNavigate();
-
+    console.log(cloth);
     useEffect(() => {
-        axios.get(`/api/cloth/read/${id}`)
-        .then(response => {
-            console.log(response);
-            setSeasonCategory(response.data.seasoncategory);
-            setPartCategory(response.data.partcategory);
-            setCustomCategory(response.data.customcategory);
-            setLocation(response.data.location);
-            setDescription(response.data.description);
-            setInputImg(response.data.imagepath);
-
-        })
-        .catch(e => alert(e));
-    }, [])
+        setSeasonCategory(cloth.seasoncategory);
+        setPartCategory(cloth.partcategory);
+        setCustomCategory(cloth.customcategory);
+        setLocation(cloth.location);
+        setDescription(cloth.description);
+        setInputImg(cloth.imagepath);
+        }, [cloth])
     const onChangeSeasonCategory = (e) => {
         setSeasonCategory(e.target.value);
     }
@@ -53,7 +45,6 @@ const EditCloth = ({edit, cloth}) => {
 
     const encodeFileToBase64 = (e, fileBlob) => {
         const reader = new FileReader();
-        setImgFile(e.target.files)
         reader.readAsDataURL(fileBlob);
         return new Promise((resolve) =>{
             reader.onload= () => {
@@ -63,18 +54,19 @@ const EditCloth = ({edit, cloth}) => {
         });
     }
 
-    const onSubmitCloth = async(e) => {
+    const onSubmitCloth = (e) => {
         e.preventDefault();
-        const fd = new FormData();
-        Object.values(imgFile).forEach((file) => fd.append("file", file));
-        fd.append('seasoncategory', seasonCategory);
-        fd.append('partcategory', partCategory);
-        fd.append('customcategory', inputCustomCategory);
-        fd.append('location', location);
-        fd.append('description', description);
-        await axios.post('api/cloth/create', fd, {
+        const data = {
+            id: id,
+            seasoncategory: seasonCategory,
+            partcategory: partCategory,
+            customcategory: customCategory,
+            location: location,
+            description: description
+        }
+        axios.post(`/api/cloth/modify/${id}`, JSON.stringify(data), {
             headers: {
-                "Content-Type": `multipart/form-data; `,
+                "Content-Type":"application/json",
             }
 
         })
@@ -107,7 +99,6 @@ const EditCloth = ({edit, cloth}) => {
                                         "fontWeight": 600,
                                         "width": "100%"}}>이미지 미리보기</div>}
                             </div>
-                            <input type="file" value={imgFile} id="file" multiple="multiple" placeholder="" onChange={(e) => encodeFileToBase64(e, e.target.files[0])}/>
                             <div>
                                 <select onChange={onChangeSeasonCategory} className="addClothSelect" value={seasonCategory}>
                                     <option value="spring">봄</option>

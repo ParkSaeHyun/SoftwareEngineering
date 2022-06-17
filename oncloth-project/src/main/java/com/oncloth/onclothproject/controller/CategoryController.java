@@ -1,6 +1,6 @@
 package com.oncloth.onclothproject.controller;
 
-import com.oncloth.onclothproject.dto.ClothDto;
+import com.oncloth.onclothproject.dto.CustomCategoryDto;
 import com.oncloth.onclothproject.model.Cloth;
 import com.oncloth.onclothproject.model.CustomCategory;
 import com.oncloth.onclothproject.service.CategoryService;
@@ -19,19 +19,36 @@ public class CategoryController {
     }
 
     @GetMapping("/api/category/{season}")
-    public List<Cloth> readSpring(@PathVariable("season") String season) {
-        List<Cloth> clothList = categoryService.mainCategoryRead(season);
+    public List<Cloth> readMainCategory(@PathVariable("season") String season) {
+        List<Cloth> clothList = categoryService.readMainCategory(season);
         return clothList;
     }
 
     @PostMapping("/api/customcategory/create/")
-    public CustomCategory createCustomCategory(String name) {
-        return categoryService.createCustomCategory(name);
+    public CustomCategory createCustomCategory(@RequestBody CustomCategoryDto customCategoryDto) {
+        return categoryService.createCustomCategory(customCategoryDto.getName());
     }
 
-    @GetMapping("/api/customcategory/")
-    public List<Cloth> customCategoryRead(@RequestParam Long id) {
-        List<Cloth> clothList = categoryService.customCategoryRead(id);
+    @PostMapping("/api/customcategory/{id}/remove/")
+    public CustomCategory removeCustomCategory(@PathVariable("id") Long id,
+                                               @RequestBody CustomCategoryDto customCategoryDto) {
+        return categoryService.delete(customCategoryDto);
+    }
+
+    @PostMapping("/api/customcategory/{id}/update/")
+    public CustomCategory updateCustomCategory(@PathVariable("id") Long id,
+                                               @RequestBody CustomCategoryDto customCategoryDto) {
+        return categoryService.update(customCategoryDto);
+    }
+
+    @GetMapping("/api/customcategory/{id}")
+    public List<Cloth> readCustomCategory(@PathVariable("id") Long id) {
+        List<Cloth> clothList = categoryService.readCustomCategory(id);
         return clothList;
+    }
+
+    @GetMapping("/api/customcategory/list/")
+    public List<CustomCategory> readCustomCategoryList() {
+        return categoryService.readCustomCategoryList();
     }
 }

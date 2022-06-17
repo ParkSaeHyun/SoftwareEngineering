@@ -2,6 +2,7 @@ package com.oncloth.onclothproject.service;
 
 import com.oncloth.onclothproject.dto.ClothDto;
 import com.oncloth.onclothproject.model.Cloth;
+import com.oncloth.onclothproject.model.ClothModify;
 import com.oncloth.onclothproject.repository.ClothRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,25 +40,25 @@ public class ClothService {
         Optional<Cloth> savedCloth = clothRepository.findById(id);
         return savedCloth;
     }
-    public Optional<Cloth> update(Long id,ClothDto clothDto,MultipartFile file){
+    public Optional<Cloth> update(Long id, ClothModify clothModify){
         Optional<Cloth> originalcloth = clothRepository.findById(id);
 
-        //create new image info
-        UUID uuid = UUID.randomUUID();
-        String filename = uuid + "_" + file.getOriginalFilename();
-
-        String projectPath = System.getProperty("user.dir") + "/src/main/resources/static/files";
-        File saveFile = new File(projectPath,filename);
+//        //create new image info
+//        UUID uuid = UUID.randomUUID();
+//        String filename = uuid + "_" + file.getOriginalFilename();
+//
+//        String projectPath = System.getProperty("user.dir") + "/src/main/resources/static/files";
+//        File saveFile = new File(projectPath,filename);
 
         //modify new to original
         originalcloth.ifPresent(u -> {
-            u.setSeasoncategory(clothDto.getSeasoncategory());
-            u.setPartcategory(clothDto.getPartcategory());
-            u.setCustomcategory(clothDto.getCustomcategory());
-            u.setLocation(clothDto.getLocation());
-            u.setDescription(clothDto.getDescription());
-            u.setImagename(filename);
-            u.setImagepath("/files/"+filename);
+            u.setSeasoncategory(clothModify.getSeasoncategory());
+            u.setPartcategory(clothModify.getPartcategory());
+            u.setCustomcategory(clothModify.getCustomcategory());
+            u.setLocation(clothModify.getLocation());
+            u.setDescription(clothModify.getDescription());
+//            u.setImagename(filename);
+//            u.setImagepath("/files/"+filename);
             clothRepository.save(u);
         });
 

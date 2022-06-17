@@ -1,5 +1,6 @@
 package com.oncloth.onclothproject.service;
 
+import com.oncloth.onclothproject.dto.CustomCategoryDto;
 import com.oncloth.onclothproject.model.Cloth;
 import com.oncloth.onclothproject.model.CustomCategory;
 import com.oncloth.onclothproject.repository.ClothRepository;
@@ -19,7 +20,7 @@ public class CategoryService {
         this.customCategoryRepository = customCategoryRepository;
     }
 
-    public List<Cloth> mainCategoryRead(String season) {
+    public List<Cloth> readMainCategory(String season) {
         List<Cloth> clothList = clothRepository.findBySeasoncategoryAndTrashbin(season, false);
         return clothList;
     }
@@ -31,11 +32,28 @@ public class CategoryService {
         return customCategory;
     }
 
-    public List<Cloth> customCategoryRead(Long id) {
+    public CustomCategory delete(CustomCategoryDto customCategoryDto) {
+        customCategoryRepository.deleteById(customCategoryDto.getId());
+        return customCategoryRepository.findById(customCategoryDto.getId()).get();
+    }
+
+    public CustomCategory update(CustomCategoryDto customCategoryDto) {
+        CustomCategory updatedCustomCategory = new CustomCategory();
+
+        updatedCustomCategory.setId(customCategoryDto.getId());
+        updatedCustomCategory.setName(customCategoryDto.getName());
+
+        return customCategoryRepository.save(updatedCustomCategory);
+    }
+
+    public List<Cloth> readCustomCategory(Long id) {
         Optional<CustomCategory> customCategory = customCategoryRepository.findById(id);
         List<Cloth> clothList = clothRepository.
                 findByCustomcategoryAndTrashbin(customCategory.get().getName(), false);
         return clothList;
     }
 
+    public List<CustomCategory> readCustomCategoryList() {
+        return customCategoryRepository.findAll();
+    }
 }
