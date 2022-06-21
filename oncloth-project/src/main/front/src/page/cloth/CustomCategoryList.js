@@ -6,6 +6,8 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import axios from 'axios';
+import { useNavigate } from "react-router";
+import { Link } from 'react-router-dom';
 
 const styled = {
     position: 'absolute',
@@ -21,7 +23,7 @@ const styled = {
 
 const CustomCategoryList = () => {
     const [CustomCategories, setCustomCategories] = useState([]);
-
+    const navigate = useNavigate();
     useEffect(() => {
         axios.get("/api/customcategory/list/")
         .then(response => {
@@ -43,7 +45,12 @@ const CustomCategoryList = () => {
         const data = {
             name: newCustomCategory
         };
-        axios.post("/api/customcategory/create/", data).then(response => console.log(response)).catch(e => alert(e));
+        axios.post("/api/customcategory/create/", data)
+        .then(response => {
+            alert("카테고리가 생성되었습니다!");
+            window.location.reload();
+        })
+        .catch(e => alert(e));
 
     }
     return (
@@ -51,10 +58,10 @@ const CustomCategoryList = () => {
             <Button onClick={handleOpen} style={{"margin-left": "5rem"}}>my style 생성</Button>
             <div className="MyStyleList">
                 {CustomCategories.map((category, index) => 
-                (<button key={index}>
+                (<Link to={`/customcategory/${category.id}`}><button key={index}>
                     <div className="altImg"></div>
                     <span>{category.name}</span>
-                </button>))}
+                </button></Link>))}
             </div>
             <Modal
                 open={open}
@@ -63,9 +70,6 @@ const CustomCategoryList = () => {
                 aria-describedby="modal-modal-description"
             >
                 <Box sx={styled}>
-                    {/* <Typography id="modal-modal-title" variant="h6" component="h2">
-                        새로운 창입니다.
-                    </Typography> */}
                     <input value={newCustomCategory} onChange={onChangeNewCustomCategory} type="text" placeholder="카테고리 이름을 입력해주세요"/>
                     <Button onClick={onSubmitNewCustomCategory}>저장</Button>
                 </Box>

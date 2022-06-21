@@ -9,7 +9,7 @@ import TextField from '@mui/material/TextField';
 import axios from "axios";
 
 const AddCloth = ({edit, cloth}) => {
-    const customCategory = ["1", "2", "3", "4"];
+    const [currentCustomCategory, setCurrentCustomCategory] = useState([]);
     const [inputImg, setInputImg] = useState(''); //미리보기
     const [imgFile, setImgFile] = useState(null); //이미지
     const [seasonCategory, setSeasonCategory] = useState("spring");
@@ -19,6 +19,9 @@ const AddCloth = ({edit, cloth}) => {
     const [description, setDescription] = useState("");
     const navigate = useNavigate();
 
+    axios.get("/api/customcategory/list/")
+    .then(response => setCurrentCustomCategory(response.data))
+    .catch(e => alert(e));
     const onChangeSeasonCategory = (e) => {
         setSeasonCategory(e.target.value);
     }
@@ -117,8 +120,8 @@ const AddCloth = ({edit, cloth}) => {
                             <textarea onChange={onChangeDescription} value={description} name="" id="" cols="20" rows="10" placeholder="상세정보를 입력해주세요"></textarea>
                             <select onChange={onChangeCustomCategory} className="addClothSelect" name="" id="">
                                 <option value="">--개인카테고리 선택--</option>
-                                {customCategory.map((category) => (
-                                    <option key={category} value={category}>{category}</option>
+                                {currentCustomCategory.map((category) => (
+                                    <option value={category.name}>{category.name}</option>
                                 ))}
                             </select>
                         </div>

@@ -10,7 +10,10 @@ const EditClothPage = () => {
         axios.get(`/api/cloth/read/${id}`)
         .then(response => {
             console.log(response);
-            setCloth(response);
+            setCloth((prevState) => ({
+                ...prevState,
+                response
+            }));
         })
         .catch(e => alert(e));
     }, []);

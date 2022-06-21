@@ -35,9 +35,10 @@ const LoginPage = () => {
                 "Content-Type":"application/json"
             }}).then(response => {
                 localStorage.setItem('user', JSON.stringify(response.data));
+                alert(`환영합니다!`);
+                navigate("/");
+                window.location.reload();
             }).catch(e => alert(`${e}의 오류가 발생했습니다.`));
-            alert(`환영합니다!`)
-        navigate("/")
     };
 
 
