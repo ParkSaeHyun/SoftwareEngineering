@@ -62,7 +62,6 @@ const EditCloth = ({cloth, id}) => {
     const onSubmitCloth = (e) => {
         e.preventDefault();
         const data = {
-            id: id,
             seasoncategory: seasonCategory,
             partcategory: partCategory,
             customcategory: inputCustomCategory,
