@@ -9,7 +9,12 @@ import TextField from '@mui/material/TextField';
 import axios from "axios";
 
 const EditCloth = ({cloth, id}) => {
-    const customCategory = ["1", "2", "3", "4"];
+
+    const [currentCustomCategory, setCurrentCustomCategory] = useState([]);
+    axios.get("/api/customcategory/list/")
+    .then(response => setCurrentCustomCategory(response.data))
+    .catch(e => alert(e));
+
 
     const [inputImg, setInputImg] = useState(''); //미리보기
     const [seasonCategory, setSeasonCategory] = useState("spring");
@@ -18,15 +23,15 @@ const EditCloth = ({cloth, id}) => {
     const [location, setLocation] = useState("");
     const [description, setDescription] = useState("");
     const navigate = useNavigate();
-    console.log(cloth);
-    useEffect(() => {
-        setSeasonCategory(cloth.seasoncategory);
-        setPartCategory(cloth.partcategory);
-        setCustomCategory(cloth.customcategory);
-        setLocation(cloth.location);
-        setDescription(cloth.description);
-        setInputImg(cloth.imagepath);
-        }, [cloth])
+    console.log(cloth.data);
+    // useEffect(() => {
+    //     setSeasonCategory(cloth.data.seasoncategory);
+    //     setPartCategory(cloth.data.partcategory);
+    //     setCustomCategory(cloth.data.customcategory);
+    //     setLocation(cloth.data.location);
+    //     setDescription(cloth.data.description);
+    //     setInputImg(cloth.data.imagepath);
+    //     }, [cloth])
     const onChangeSeasonCategory = (e) => {
         setSeasonCategory(e.target.value);
     }
@@ -57,14 +62,13 @@ const EditCloth = ({cloth, id}) => {
     const onSubmitCloth = (e) => {
         e.preventDefault();
         const data = {
-            id: id,
             seasoncategory: seasonCategory,
             partcategory: partCategory,
-            customcategory: customCategory,
+            customcategory: inputCustomCategory,
             location: location,
             description: description
         }
-        axios.post(`/api/cloth/modify/${id}`, JSON.stringify(data), {
+        axios.post(`/api/cloth/modify/${id}`, data, {
             headers: {
                 "Content-Type":"application/json",
             }
@@ -120,8 +124,8 @@ const EditCloth = ({cloth, id}) => {
                             <textarea onChange={onChangeDescription} value={description} name="" id="" cols="20" rows="10" placeholder="상세정보를 입력해주세요"></textarea>
                             <select className="addClothSelect" onChange={onChangeCustomCategory} name="" id=""  value={inputCustomCategory}>
                                 <option >--개인카테고리 선택--</option>
-                                {customCategory.map((category) => (
-                                    <option key={category} value={category}>{category}</option>
+                                {currentCustomCategory.map((category) => (
+                                    <option key={category.name} value={category.name}>{category.name}</option>
                                 ))}
                             </select>
                         </div>

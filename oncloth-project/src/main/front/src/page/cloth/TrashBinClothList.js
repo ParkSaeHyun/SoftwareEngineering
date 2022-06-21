@@ -6,14 +6,20 @@ const TrashBinClothList = ({clothList}) => {
     const onClickDelete = (e, id) => {
         e.preventDefault();
         axios.post(`/api/trashbin/remove/${id}`).then(
-            response => console.log(response)
+            response => {
+                alert("영구삭제되었습니다.")
+                window.location.reload();
+            }
         );
         
     }
     const onClickRestore = (e, id) => {
         e.preventDefault();
         axios.post(`/api/trashbin/restore/${id}`).then(
-            response => console.log(response)
+            response => {
+                alert("복원되었습니다");
+                window.location.reload();
+                }
         );
     }
     return(

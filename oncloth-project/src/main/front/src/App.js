@@ -14,6 +14,8 @@ import { useDispatch } from "react-redux";
 import { login } from "./redux/login";
 import AddCloth from './page/cloth/AddCloth';
 import EditClothPage from './page/cloth/EditClothPage';
+import ClothSearchPage from './page/cloth/ClothSearchPage';
+import CustomCategoryDetail from './page/cloth/CustomCategoryDetail';
 
 
 
@@ -30,10 +32,12 @@ function App() {
       <Route path="/findmypw" element = {<FindMyPwPage/>}/>
       <Route path="/:season" element = {<CategoryList />}/>
       <Route path="/addcloth" element= {<AddCloth />} />
+      <Route path='/searchcloth/:name' element={<ClothSearchPage />} />
       <Route path="/editcloth/:id" element ={<EditClothPage />}/>
       <Route path="/clothlist" element = {<ClothList name = "안녕" />}/>
       <Route path="/editUser" element = {<EditUserPage />}/>
       <Route path="/trashbin" element = {<TrashBin /> } />
+      <Route path="/customcategory/:id" element = {<CustomCategoryDetail />} />
     </Routes>
     </>
   );
