@@ -37,6 +37,8 @@ const EditUserPage = () => {
         }}).then(response => {
                 alert("회원정보가 변경되었습니다!");
                 localStorage.setItem('user', JSON.stringify(response.data));
+                navigate("/");
+                window.location.reload();
             }).catch(e => alert(e));
     }
     return(

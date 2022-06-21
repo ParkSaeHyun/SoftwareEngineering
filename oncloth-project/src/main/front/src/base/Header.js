@@ -1,24 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Button from "./Button";
-import logo from "./소공로고.jpg";
-import style from "./style/Header.css"
+import "./style/Header.css"
 import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router';
 import Logo from "./Logo";
-import { useSelector } from "react-redux";
 
-const Header = ({mode}) => {
+const Header = () => {
     let user = JSON.parse(localStorage.getItem('user'));
-    const name = "재석이짱";
+    const navigate = useNavigate()
+    const [search, setSearch] = useState("");
     const onClickLogout = () => {
         localStorage.removeItem('user');
     };
+    const onChangeInput = (e) => {
+        setSearch(e.target.value);
+    }
+    const onSearch = (e) => {
+        e.preventDefault();
+        navigate(`/searchcloth/${search}`);
+    }
     return(
         <div>          
             {user ? 
                 <div className="header">
                     <Logo />
-                    <form  className="header__Search">
-                        <input className="header__searchInput" placeholder="검색어를 입력하세요" required />
+                    <form onSubmit={onSearch} className="header__Search">
+                        <input onChange={onChangeInput} value ={search} className="header__searchInput" placeholder="검색어를 입력하세요" required />
                         <Button type="submit">검색</Button> 
                     </form>
                     <div>
@@ -28,6 +35,7 @@ const Header = ({mode}) => {
                     <div>
                         <Link to="/addcloth"><Button>옷 추가하기</Button></Link>
                         <Link to="/edituser"><Button>회원정보 수정</Button></Link>
+                        <Link to ="/trashbin"><Button>헌옷수거함</Button></Link>
                     </div>
                 </div> 
              : 
